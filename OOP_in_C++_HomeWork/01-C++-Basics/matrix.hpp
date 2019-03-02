@@ -1,12 +1,10 @@
 #ifndef MATRIX_CPP
 #define MATRIX_CPP
-#include <iostream>
 #include <exception>
+#include <iostream>
 
 struct size_incompatible : public std::exception {
-const char* what() const throw() {
-	return "matrices size incompatible!";
-}
+  const char *what() const throw() { return "matrices size incompatible!"; }
 };
 
 class matrix {
@@ -20,8 +18,10 @@ public:
     for (int k = 0; k < i * j; k++)
       std::cin >> _value[k];
   }
-  matrix(const matrix &mat) :_i{mat._i}, _j{mat._j},
-      _value{(_i <= 0 || _j <= 0) ? nullptr: new double[_i * _j] } {
+  matrix(const matrix &mat)
+      : _i{mat._i}, _j{mat._j}, _value{(_i <= 0 || _j <= 0)
+                                           ? nullptr
+                                           : new double[_i * _j]} {
     std::copy(mat._value, mat._value + (_i * _j), _value);
   }
   ~matrix() { delete _value; }
