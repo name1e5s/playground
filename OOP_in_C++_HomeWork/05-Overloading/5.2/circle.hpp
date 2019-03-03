@@ -11,15 +11,34 @@ public:
   ~Point() { std::cout << "Circle destroied." << std::endl; }
   double distance(const Point &p) {
     return std::sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
+  };
+  // Overloading
+  Point &operator++() {
+    x++;
+    return *this;
+  }
+  Point &operator--() {
+    x--;
+    return *this;
+  }
+  Point operator++(int n) {
+    Point tmp = *this;
+    y++;
+    return tmp;
+  }
+  Point operator--(int n) {
+    Point tmp = *this;
+    y--;
+    return tmp;
   }
 };
 
 class circle {
 private:
-  Point p;
   double r;
 
 public:
+  Point p;
   void init(void) {
     std::cout << "Input x,y and radius:" << std::endl;
     std::cin >> p.x >> p.y >> r;
