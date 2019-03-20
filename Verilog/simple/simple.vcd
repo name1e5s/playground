@@ -1,0 +1,28 @@
+$date
+	Wed Mar 20 22:52:56 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module simple_tb $end
+$scope module s $end
+$var wire 4 ! a [3:0] $end
+$var wire 4 " b [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b101 "
+b1010 !
+$end
+#50
+b11 "
+b1100 !
+#150
+b0 "
+b0 !
+#250

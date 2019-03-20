@@ -1,0 +1,54 @@
+#! /usr/bin/vvp
+:ivl_version "10.1 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x560a67ce4db0 .scope module, "simple_tb" "simple_tb" 2 2;
+ .timescale 0 0;
+v0x560a67d05670_0 .var "A", 3 0;
+v0x560a67d05730_0 .net "B", 3 0, L_0x560a67d05b90;  1 drivers
+S_0x560a67ce4f30 .scope module, "s" "test" 2 23, 3 1 0, S_0x560a67ce4db0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "a"
+    .port_info 1 /OUTPUT 4 "b"
+v0x560a67ce5100_0 .net *"_s1", 0 0, L_0x560a67d05800;  1 drivers
+v0x560a67d05180_0 .net *"_s3", 0 0, L_0x560a67d05920;  1 drivers
+v0x560a67d05260_0 .net *"_s5", 0 0, L_0x560a67d059c0;  1 drivers
+v0x560a67d05320_0 .net *"_s7", 0 0, L_0x560a67d05a90;  1 drivers
+v0x560a67d05400_0 .net "a", 3 0, v0x560a67d05670_0;  1 drivers
+v0x560a67d05530_0 .net "b", 3 0, L_0x560a67d05b90;  alias, 1 drivers
+L_0x560a67d05800 .part v0x560a67d05670_0, 0, 1;
+L_0x560a67d05920 .part v0x560a67d05670_0, 1, 1;
+L_0x560a67d059c0 .part v0x560a67d05670_0, 2, 1;
+L_0x560a67d05a90 .part v0x560a67d05670_0, 3, 1;
+L_0x560a67d05b90 .concat [ 1 1 1 1], L_0x560a67d05a90, L_0x560a67d059c0, L_0x560a67d05920, L_0x560a67d05800;
+    .scope S_0x560a67ce4db0;
+T_0 ;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x560a67d05670_0, 0, 4;
+    %end;
+    .thread T_0;
+    .scope S_0x560a67ce4db0;
+T_1 ;
+    %vpi_call 2 11 "$dumpfile", "simple.vcd" {0 0 0};
+    %vpi_call 2 13 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x560a67ce4f30 {0 0 0};
+    %vpi_call 2 14 "$monitor", "A is %b, B is %b.", v0x560a67d05670_0, v0x560a67d05730_0 {0 0 0};
+    %delay 50, 0;
+    %pushi/vec4 12, 0, 4;
+    %store/vec4 v0x560a67d05670_0, 0, 4;
+    %delay 100, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x560a67d05670_0, 0, 4;
+    %delay 100, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "simpletb.v";
+    "simple.v";
