@@ -39,11 +39,11 @@ private:
 
 public:
   Point p;
-  void init(void) {
+  void init() {
     std::cout << "Input x,y and radius:" << std::endl;
     std::cin >> p.x >> p.y >> r;
   };
-  circle(double x = 0, double y = 0, double r = 0) : p(x, y), r(r) {
+  circle(double x = 0, double y = 0, double r = 0) :  r(r),p(x,y) {
     std::cout << "Circle::Circle called." << std::endl;
   }
   ~circle() { std::cout << "Point destroyed." << std::endl; }

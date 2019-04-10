@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <random>
 
 using std::cin;
@@ -12,9 +13,18 @@ int main(int argc, const char **argv) {
   int result = dist(rand);
 
   int input;
-  while (1) {
+  while (true) {
     cout << "Guess a number: ";
     cin >> input;
+
+    // Handle illegal input
+    if (cin.fail()) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Illegal input! You motherfucka!!!" << endl;
+      continue;
+    }
+
     if (input < 0 || input > 1000) {
       cout << "Illegal number." << endl;
     } else if (input == result) {

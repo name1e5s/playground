@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 #include <iostream>
 
-int main(int argc, char **argv) {
+int main(int, char **) {
   std::cout << "Input A1:" << std::endl;
   matrix a1;
   std::cout << "Input A2:" << std::endl;

@@ -12,9 +12,9 @@ int main(int argc, char **argv) {
   std::cout << "A2 is\n" << a2 << "\n";
   std::cout << "A1 + A2 is\n" << a1 + a2 << "\n";
   std::cout << "A1 - A2 is\n" << a1 - a2 << "\n";
-  matrix *pA1 = new matrix(1, 2);
-  matrix *pA2 = new matrix(1, 2);
-  matrix *pA3 = new matrix(2, 33); // Doesn't matter.
+  auto *pA1 = new matrix(1, 2);
+  auto *pA2 = new matrix(1, 2);
+  auto *pA3 = new matrix(2, 33); // Doesn't matter.
   pA1->init();
   pA2->init();
   *pA3 = *pA1 + *pA2;

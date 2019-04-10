@@ -4,7 +4,7 @@
 #include <iostream>
 
 struct size_incompatible : public std::exception {
-  const char *what() const throw() { return "matrices size incompatible!"; }
+  const char *what() const noexcept override { return "matrices size incompatible!"; }
 };
 
 class matrix {
@@ -24,7 +24,7 @@ public:
                                            : new double[_i * _j]} {
     std::copy(mat._value, mat._value + (_i * _j), _value);
   }
-  ~matrix() { delete _value; }
+  ~matrix() { delete[]  _value; }
   // Operate overloads
   double operator()(int i, int j) const;
   double &operator()(int i, int j);

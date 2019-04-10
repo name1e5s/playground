@@ -2,14 +2,16 @@
 #include <stdexcept>
 
 double &matrix::operator()(int i, int j) {
-  if ((i < 0 || j < 0) || (i >= _i || j > _j))
+  if ((i < 0 || j < 0) || (i >= _i || j > _j)) {
     throw std::out_of_range("Term requested out of range!");
+  }
   return _value[i * _j + j];
 }
 
 double matrix::operator()(int i, int j) const {
-  if ((i < 0 || j < 0) || (i >= _i || j > _j))
+  if ((i < 0 || j < 0) || (i >= _i || j > _j)) {
     throw std::out_of_range("Term requested out of range!");
+  }
   return _value[i * _j + j];
 }
 
@@ -22,26 +24,31 @@ matrix &matrix::operator=(const matrix &mat) {
 }
 
 matrix &matrix::operator+=(const matrix &mat) {
-  if (mat._i != _i || mat._j != mat._j)
+  if (mat._i != _i || mat._j != mat._j) {
     throw size_incompatible();
-  for (int i = 0; i < _i * _j; i++)
+  }
+  for (int i = 0; i < _i * _j; i++) {
     _value[i] += mat._value[i];
+  }
   return *this;
 }
 
 matrix &matrix::operator-=(const matrix &mat) {
-  if (mat._i != _i || mat._j != mat._j)
+  if (mat._i != _i || mat._j != mat._j) {
     throw size_incompatible();
-  for (int i = 0; i < _i * _j; i++)
+  }
+  for (int i = 0; i < _i * _j; i++) {
     _value[i] -= mat._value[i];
+  }
   return *this;
 }
 
 std::ostream &operator<<(std::ostream &os, const matrix &mat) {
   for (int i = 0; i < mat._i; i++) {
     os << (i == 0 ? "[ " : "  ");
-    for (int j = 0; j < mat._j; j++)
+    for (int j = 0; j < mat._j; j++) {
       os << mat._value[i * mat._j + j] << " ";
+    }
     os << (i == mat._i - 1 ? "]" : "\n");
   }
   return os;

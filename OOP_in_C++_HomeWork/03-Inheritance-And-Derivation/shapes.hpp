@@ -16,7 +16,7 @@ class Shape {
 public:
   Shape() { cout << "Shape::Shape() constructor called." << endl; }
   ~Shape() { cout << "Shape::~Shape() deconstructor called." << endl; }
-  virtual double area(void) { throw NotImplemented(); }
+  virtual double area() { throw NotImplemented(); }
 };
 
 class Rectangle : public Shape {
@@ -27,7 +27,7 @@ public:
   ~Rectangle() {
     cout << "Rectangle::~Rectangle() deconstructor called." << endl;
   }
-  virtual double area(void) { return width * height; }
+  double area() override { return width * height; }
 
 protected:
   double width, height;
@@ -48,7 +48,7 @@ public:
   }
 
   ~Circle() { cout << "Circle::~Circle() deconstrctor called." << endl; }
-  double area(void) {
+  double area() override {
 #define _USE_MATH_DEFINES
     return M_PI * radius * radius;
 #undef _USE_MATH_DEFINES

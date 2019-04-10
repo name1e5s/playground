@@ -20,7 +20,7 @@ private:
   double r;
 
 public:
-  void init(void) {
+  void init() {
     std::cout << "Input x,y and radius:" << std::endl;
     std::cin >> p.x >> p.y >> r;
   };
