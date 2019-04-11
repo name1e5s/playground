@@ -21,6 +21,15 @@ matrix &matrix::operator=(const matrix &mat) {
   return *this;
 }
 
+matrix &matrix::operator=(matrix &&mat) {
+  delete[] _value;
+  _value = nullptr;
+  _i = mat._i;
+  _j = mat._j;
+  _value = mat._value;
+  return *this;
+}
+
 matrix &matrix::operator+=(const matrix &mat) {
   if (mat._i != _i || mat._j != mat._j)
     throw size_incompatible();

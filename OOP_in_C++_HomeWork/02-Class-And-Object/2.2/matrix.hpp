@@ -27,6 +27,9 @@ public:
     std::copy(mat._value, mat._value + (_i * _j), _value);
     std::cout << __FUNCTION__ << " (copy) called." << std::endl;
   }
+  matrix(matrix &&mat) : _i{mat._i}, _j{mat._j}, _value{mat._value} {
+    mat._value = nullptr;
+  }
   ~matrix() {
     delete[] _value;
     std::cout << __FUNCTION__ << "(" << _i << "," << _j << ")"
@@ -37,6 +40,7 @@ public:
   double &operator()(int i, int j);
 
   matrix &operator=(const matrix &);
+  matrix &operator=(matrix &&);
   matrix &operator+=(const matrix &);
   matrix &operator-=(const matrix &);
 
