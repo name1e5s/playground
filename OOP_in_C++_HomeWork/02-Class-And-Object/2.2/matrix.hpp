@@ -4,7 +4,9 @@
 #include <iostream>
 
 struct size_incompatible : public std::exception {
-  const char *what() const noexcept override { return "matrices size incompatible!"; }
+  const char *what() const noexcept override {
+    return "matrices size incompatible!";
+  }
 };
 
 class matrix {
@@ -15,18 +17,20 @@ public:
       return;
     }
     _value = new double[i * j];
-    std::cout << "constructed.(" << _i << "," << _j << ")" << std::endl;
+    std::cout << __FUNCTION__ << "(" << _i << "," << _j << ")"
+              << " called." << std::endl;
   }
   matrix(const matrix &mat)
       : _i{mat._i}, _j{mat._j}, _value{(_i <= 0 || _j <= 0)
                                            ? nullptr
                                            : new double[_i * _j]} {
     std::copy(mat._value, mat._value + (_i * _j), _value);
-    std::cout << "constructed(copy)." << std::endl;
+    std::cout << __FUNCTION__ << " (copy) called." << std::endl;
   }
   ~matrix() {
     delete[] _value;
-    std::cout << "deconstructed.(" << _i << "," << _j << ")" << std::endl;
+    std::cout << __FUNCTION__ << "(" << _i << "," << _j << ")"
+              << " called." << std::endl;
   }
   // Operate overloads
   double operator()(int i, int j) const;

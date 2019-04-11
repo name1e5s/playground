@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 
 int main(int argc, char **argv) {
-  circle a, b;
+  Circle a, b;
   a.init();
   b.init();
   if (a.isCross(b))

@@ -6,9 +6,9 @@ class Point {
 public:
   double x, y;
   Point(double x = 0, double y = 0) : x(x), y(y) {
-    std::cout << "Point::Point called." << std::endl;
+    std::cout << __FUNCTION__ << " called." << std::endl;
   }
-  ~Point() { std::cout << "Point destroyed." << std::endl; }
+  ~Point() { std::cout << __FUNCTION__ << " called." << std::endl; }
   double distance(const Point &p) {
     return std::sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
   };
@@ -33,7 +33,7 @@ public:
   }
 };
 
-class circle {
+class Circle {
 private:
   double r;
 
@@ -43,12 +43,12 @@ public:
     std::cout << "Input x,y and radius:" << std::endl;
     std::cin >> p.x >> p.y >> r;
   };
-  circle(double x = 0, double y = 0, double r = 0) :  r(r),p(x,y) {
-    std::cout << "Circle::Circle called." << std::endl;
+  Circle(double x = 0, double y = 0, double r = 0) : r(r), p(x, y) {
+    std::cout << __FUNCTION__ << " called." << std::endl;
   }
-  ~circle() { std::cout << "Point destroyed." << std::endl; }
+  ~Circle() { std::cout << __FUNCTION__ << " called." << std::endl; }
 
-  bool isCross(const circle &maru) {
+  bool isCross(const Circle &maru) {
     double d = p.distance(maru.p);
     return (std::abs(r - maru.r) < d) && (d < r + maru.r);
   }
