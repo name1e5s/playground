@@ -7,10 +7,6 @@ param(
 $SrcPath = Convert-Path $Src
 $DestPath = Convert-Path $Dest
 
-If (!(test-path $DestPath)) {
-    New-Item -ItemType Directory -Force -Path $DestPath
-}
-
 $PowerPointApplication = New-Object -ComObject PowerPoint.Application
 
 Get-ChildItem -Path $SrcPath -Filter *.ppt? | ForEach-Object {
