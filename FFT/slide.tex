@@ -218,4 +218,26 @@
     $$T(n) = 2T(\frac{n}{2}) + \Theta(n) \qquad \Rightarrow \textcolor{blue}{\Theta(n \log n)}$$
 \end{frame}
 
+\begin{frame}
+    \frametitle{正确性证明}
+    对于 $y_0, y_1, \cdots\, y_{n/2 - 1}$ 有
+    \begin{displaymath} 
+        \begin{aligned}	 
+         y_k & = y_k^{[0]} + \omega_n^k y_k^{[1]} \\
+         & = A^{[0]}(\omega_n^{2k}) + \omega_n^k A^{[1]}(\omega_n^{2k}) \\
+         & = A(\omega_n^k)
+         \end{aligned}
+    \end{displaymath}
+    对于 $y_{n/2}, y_{n/2 + 1}, \cdots\, y_{n - 1}$ 有
+    \begin{displaymath} 
+        \begin{aligned}	 
+         y_{k + n/2} & = y_k^{[0]} - \omega_n^k y_k^{[1]} \\
+         & = y_k^{[0]} + \omega_n^{k + n/2} y_k^{[1]} \\
+         & = A^{[0]}(\omega_n^{2k}) + \omega_n^{k + n/2} A^{[1]}(\omega_n^{2k}) \\
+         & = A^{[0]}(\omega_n^{2k + n}) + \omega_n^{k + n/2} A^{[1]}(\omega_n^{2k + n}) \\
+         & = A(\omega_n^{k + n/2})
+         \end{aligned}
+    \end{displaymath}
+\end{frame}
+
 \end{document}
