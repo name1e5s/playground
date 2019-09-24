@@ -70,10 +70,10 @@
 
 \begin{frame}
     \frametitle{表达形式的转换}
-    \begin{block}{系数表达 $\Rightarrow$ 点值表达}
+    \begin{block}{系数表达 $\Rightarrow$ 点值表达 aka 求值}
         直接对选取的点进行求值即可，时间复杂度为 $\textcolor{red}{\Theta(n^2)}$
     \end{block}
-    \begin{block}{点值表达 $\Rightarrow$ 系数表达}
+    \begin{block}{点值表达 $\Rightarrow$ 系数表达 aka 插值}
         对于给定的点值对集合 $\{ (x_0, y_0), \cdots, (x_{n-1}, y_{n-1})\}$
         使用\textbf{拉格朗日公式}
         $$A(x) = \sum_{k = 0}^{n - 1} y_k \frac{\prod_{j \neq k}(x - x_j)}{\prod_{j \neq k}(x_k - x_j)}$$
@@ -124,14 +124,8 @@
 
 \begin{frame}
     \frametitle{多项式的乘法}
-% Define a common style for blocks - this style is labeled "myBlock"
 \tikzstyle{myBlock}=[draw, fill=blue!30!white, minimum size=0.5in, node distance=2.25in]
-
-% Import TikZ library for customizing arrow heads
-% i.e. an arrow head may be scaled in width/height via: -{Latex[length=2mm,width=2mm]}
 \usetikzlibrary{arrows.meta}
-
-% Define common style for path lines - this style is labeled "myPath"
 \tikzstyle{myPath} = [-{Latex[length=2mm,width=2mm]}, line width=0.4mm]
 
 \begin{figure}[H]
@@ -174,6 +168,54 @@
     \begin{figure}
         \includegraphics[width= 0.8\linewidth]{ft.pdf}
      \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{N 次单位根}
+    \begin{block}{}
+        称方程 $\omega^n = 1$ 在 $\mathbb{C}$ 上的 n 个解
+        $$\omega_k = \exp^{\frac{2k\pi i}{n}} = \cos(\frac{2\pi k}{n}) + i \sin(\frac{2\pi k}{n})$$
+        为 \textbf{n 次单位根}
+    \end{block}
+    显然，N 次单位根有如下性质：
+    \begin{itemize}
+        \item $\omega_{dn}^{dk} = \omega_{n}^{k}$ (Cancellation Lemma)
+        \item 当 $n$ 为偶数时，$(\omega_n^k)^2 = (\omega_n^k)^2$ (Halving Lemma)
+        \item 当 $n \geq 1$ 时，对于 $k \neq 0$ 且 $k$ 不被 $n$ 整除，有 
+        $\sum_{j = 0}{n - 1} (\omega_n^k)^j = 0$ (Summation Lemma)
+    \end{itemize}
+    \begin{center}
+        \sout{证明留做习题}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{离散傅里叶变换（DFT）}
+    可用于求次数界为 $n$ 的多项式 $A(x)$ 在
+    $(\omega_n^{0}, \omega_n^{1}, \cdots, \omega_n^{n - 1})$
+    处进行求值。为了简化问题，在这里我们假设
+    \begin{itemize}
+        \item $n$ 是 2 的幂
+        \item A(x) 被表示为系数向量 $\vec{a} = (a_0, a_1, \cdots, a_{n-1})$
+    \end{itemize}
+    我们定义，对于上文所述多项式 $A(x)$，向量 $\vec{y} = (y_0, y_1, \cdots, y_{n-1})$ 被称为
+    系数向量的\textbf{离散傅里叶变换}，其中
+    $$y_k = A(\omega_n^k) = \sum_{i = 0}^{n-1} a_i \omega_n^{ki}$$
+    可记
+    $$\vec{y} = DFT_n(\vec{a}) \qquad \Rightarrow \textcolor{red}{\Theta(n^2)}$$
+\end{frame}
+
+\begin{frame}
+    \frametitle{快速傅里叶变换（FFT）}
+    \centering ``The most important numerical algorithm of our lifetime'' \\ by G. Strang, 1994
+\end{frame}
+
+\begin{frame}
+    \frametitle{分而治之}
+    $$A^{[0]}(x) = a_0 + a_2 x + a_4 x^2 + \cdots + a_{n-2} x^{\frac{n}{2} - 1}$$
+    $$A^{[1]}(x) = a_1 + a_3 x + a_5 x^2 + \cdots + a_{n-1} x^{\frac{n}{2} - 1}$$
+    $$A(x) = A^{[0]}(x^2) + xA^{[1]}(x^2)$$
+    $$T(n) = 2T(\frac{n}{2}) + \Theta(n) \qquad \Rightarrow \textcolor{blue}{\Theta(n \log n)}$$
 \end{frame}
 
 \end{document}
