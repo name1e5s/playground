@@ -1,0 +1,15 @@
+\frametitle{代码实现：多项式乘法}
+    \begin{lstlisting}[language=Python]
+# Input: Coefficient representation of A and B as list
+# Output: Coefficient representation of AB
+def poly_mul(a, b):
+    n = 1 << (len(a) + len(b) - 2).bit_length()
+    o = NthRootOfUnity(n)
+    fft_a = fft(a, o)
+    fft_b = fft(b, o)
+    fft_c = [fft_a[i] * fft_b[i] for i in range(n)]
+    c = [round((a/n).real) for a in fft(fft_c, o ** -1)]
+    while len(c) > 0 and c[-1] == 0:
+        del c[-1]
+    return c
+    \end{lstlisting}

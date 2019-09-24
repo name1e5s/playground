@@ -9,8 +9,30 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{pgfplots}
+\usepackage{listings}
 \pgfplotsset{width=7cm,compat=1.6}
 \usefonttheme[onlymath]{serif}
+
+\newfontfamily\courier{Courier New}
+\lstset{linewidth=1.1\textwidth,
+	numbers=left,
+	basicstyle=\small\courier,
+	numberstyle=\tiny\courier,
+	keywordstyle=\color{blue}\courier,
+	commentstyle=\it\color[cmyk]{1,0,1,0}\courier, 
+	stringstyle=\it\color[RGB]{128,0,0}\courier,
+	breaklines,
+	extendedchars=false, 
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+	tabsize=4, 
+	basicstyle=\small\courier
+}
+
+\tikzstyle{myBlock}=[draw, fill=blue!30!white, minimum size=0.5in, node distance=2.25in]
+\usetikzlibrary{arrows.meta}
+\tikzstyle{myPath} = [-{Latex[length=2mm,width=2mm]}, line width=0.4mm]
+
+
 \begin{document}
 
 \title{多项式乘法与快速傅里叶变换}
@@ -124,9 +146,6 @@
 
 \begin{frame}
     \frametitle{多项式的乘法}
-\tikzstyle{myBlock}=[draw, fill=blue!30!white, minimum size=0.5in, node distance=2.25in]
-\usetikzlibrary{arrows.meta}
-\tikzstyle{myPath} = [-{Latex[length=2mm,width=2mm]}, line width=0.4mm]
 
 \begin{figure}[H]
 \centering
@@ -136,8 +155,7 @@
    \node[myBlock] (s) [below of=v] {\begin{tabular}{c} $A(x_0), B(x_0)$ \\ $A(x_1), B(x_1)$ \\ $\cdots$ \\ $A(x_{2n-1}), B(x_{2n-1})$ \end{tabular}};
    \node[myBlock] (b) [right of=s] {\begin{tabular}{c} $C(x_0)$ \\ $C(x_1)$ \\ $\cdots$ \\ $C(x_{2n-1})$ \end{tabular}};
 
-   % Draw line between each of the blocks
-   \draw[myPath] (v) -- (p) node [midway, above] {$\otimes$, $\textcolor{red}{\Theta(n^2)}$};
+    \draw[myPath] (v) -- (p) node [midway, above] {$\otimes$, $\textcolor{red}{\Theta(n^2)}$};
    \draw[myPath] (s) -- (b) node [midway, above] {$\times$, $\textcolor{green}{\Theta(n)}$};
    \draw[myPath] (v) -- (s) node [midway, left] {求值, $\textcolor{red}{\Theta(n^2)}$};
    \draw[myPath] (b) -- (p) node [midway, left] {插值, $\textcolor{red}{\Theta(n^2)}$};
@@ -238,6 +256,120 @@
          & = A(\omega_n^{k + n/2})
          \end{aligned}
     \end{displaymath}
+\end{frame}
+
+\begin{frame}
+    \frametitle{逆 DFT}
+    如果 $y = DFT_n(y)$ 则可以记 $a = DFT^{-1}_n(y)$
+    
+    通过对 FFT 进行以下修改，我们可以在 $\textcolor{blue}{\Theta(n \log n)}$ 的
+    时间复杂度下计算 $DFT_n^{-1}$：
+    \begin{itemize}
+        \item $a$ 和 $y$ 的位置互换
+        \item $\omega_n$ 替换为 $\omega_n^{-1}$
+        \item 结果除以 $n$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{多项式的乘法}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \node[myBlock] (v) {\begin{tabular}{c} $\vec{a} = (a_0, a_1, \cdots, a_{n-1})$ \\ $\vec{b} = (b_0, b_1, \cdots, b_{n-1})$ \end{tabular}};
+   \node[myBlock] (p) [right of=v] {$\vec{c} = (c_0, c_1, \cdots, c_{2n-1})$};
+   \node[myBlock] (s) [below of=v] {\begin{tabular}{c} $A(x_0), B(x_0)$ \\ $A(x_1), B(x_1)$ \\ $\cdots$ \\ $A(x_{2n-1}), B(x_{2n-1})$ \end{tabular}};
+   \node[myBlock] (b) [right of=s] {\begin{tabular}{c} $C(x_0)$ \\ $C(x_1)$ \\ $\cdots$ \\ $C(x_{2n-1})$ \end{tabular}};
+
+   % Draw line between each of the blocks
+   \draw[myPath] (v) -- (p) node [midway, above] {$\otimes$, $\textcolor{red}{\Theta(n^2)}$};
+   \draw[myPath] (s) -- (b) node [midway, above] {$\times$, $\textcolor{green}{\Theta(n)}$};
+   \draw[myPath] (v) -- (s) node [midway, left] {FFT, $\textcolor{blue}{\Theta(n \log n)}$};
+   \draw[myPath] (b) -- (p) node [midway, left] {逆FFT, $\textcolor{blue}{\Theta(n \log n)}$};
+
+\end{tikzpicture}
+\label{fig:block_diagram_2}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{卷积定理}
+    对任何长度为 $n$ 的向量 $\vec{a}$ 和 $\vec{b}$，有
+    $$\vec{a} \otimes \vec{b} = DFT_{2n}^{-1}(DFT_{2n}(\vec{a}) · DFT_{2n}{\vec{b}})$$
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{代码实现：N次单位根}
+    \begin{lstlisting}[language=Python]
+from cmath import exp
+from math import pi
+
+
+class NthRootOfUnity:
+    def __init__(self, n, k=1):
+        self.k = k
+        self.n = n
+
+    def __pow__(self, other):
+        if type(other) is int:
+            n = NthRootOfUnity(self.n, self.k * other)
+            return n
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{代码实现：N次单位根}
+    \begin{lstlisting}[language=Python] 
+    def __eq__(self, other):
+        if other == 1:
+            return abs(self.n) == abs(self.k)
+
+    def __mul__(self, other):
+        return exp(2*1j*pi*self.k/self.n)*other
+
+    def __repr__(self):
+        return str(self.n) + "-th root of unity to the " + str(self.k)
+
+    @property
+    def th(self):
+        return abs(self.n // self.k)
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{代码实现：FFT}
+    \begin{lstlisting}[language=Python] 
+def fft(a, omega):
+    if omega == 1:
+        return [sum(a)]
+    o2 = omega**2
+    a0 = fft(a[0::2], o2)
+    a1 = fft(a[1::2], o2)
+    res = [None]*omega.th
+    for i in range(omega.th//2):
+        res[i] = a0[i] + omega**i * a1[i]
+        res[i+omega.th//2] = a0[i] - omega**i * a1[i]
+    return res
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{代码实现：多项式乘法}
+    \begin{lstlisting}[language=Python]
+# Input: Coefficient representation of A and B as list
+# Output: Coefficient representation of AB
+def poly_mul(a, b):
+    n = 1 << (len(a) + len(b) - 2).bit_length()
+    o = NthRootOfUnity(n)
+    fft_a = fft(a, o)
+    fft_b = fft(b, o)
+    fft_c = [fft_a[i] * fft_b[i] for i in range(n)]
+    c = [round((a/n).real) for a in fft(fft_c, o ** -1)]
+    while len(c) > 0 and c[-1] == 0:
+        del c[-1]
+    return c
+    \end{lstlisting}
 \end{frame}
 
 \end{document}
