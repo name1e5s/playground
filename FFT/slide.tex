@@ -10,6 +10,8 @@
 \usepackage{xcolor}
 \usepackage{pgfplots}
 \usepackage{listings}
+\usepackage{amsmath}
+
 \pgfplotsset{width=7cm,compat=1.6}
 \usefonttheme[onlymath]{serif}
 
@@ -105,8 +107,6 @@
 
 \section{多项式的乘法}
 
-\section{多项式的乘法}
-
 \begin{frame}
     \frametitle{多项式的乘法}
     对于多项式乘法，如果$A(x). B(x)$均为次数界为 $n$ 的多项式，
@@ -166,6 +166,8 @@
 
 \end{frame}
 
+\section{快速傅里叶变换}
+
 \begin{frame}
     \frametitle{Can we do better?}
     使用\textbf{快速傅里叶变换}，我们可以在
@@ -181,7 +183,6 @@
     \begin{itemize}
         \item 有史以来最伟大、最深刻的发现之一
         \item 将时域信号转换为频域信号
-        \item \sout{不开门课专门讲这个是计算机院学生的损失}
     \end{itemize}
     \begin{figure}
         \includegraphics[width= 0.8\linewidth]{ft.pdf}
@@ -299,6 +300,8 @@
     $$\vec{a} \otimes \vec{b} = DFT_{2n}^{-1}(DFT_{2n}(\vec{a}) · DFT_{2n}{\vec{b}})$$
 \end{frame}
 
+\section{代码实现}
+
 \begin{frame}[fragile]
     \frametitle{代码实现：N次单位根}
     \begin{lstlisting}[language=Python]
@@ -370,6 +373,12 @@ def poly_mul(a, b):
         del c[-1]
     return c
     \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Thank You
+    \end{center}
 \end{frame}
 
 \end{document}
