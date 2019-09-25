@@ -3,5 +3,5 @@
 *.nav
 *.out
 *.snm
-*.synctex*
+*.synctex.gz
 *.toc
