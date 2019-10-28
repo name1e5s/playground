@@ -3,9 +3,27 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 #define MAXARGLEN 64
 #define MAXARGS 128
 #define BUFFER_SIZE 1024
+
+#define TOK_END 0
+#define TOK_STR 1
+#define TOK_APP 2
+#define TOK_OUT 3
+#define TOK_INF 4
+#define TOK_PIP 5
+
+#define TYPE_IN 1
+#define TYPE_OUT 2
+#define TYPE_APPEND 3
+#define TYPE_INOUT 4
+#define TYPE_INAPPEND 5
 
 static char command_buffer[BUFFER_SIZE];
 static char token_buffer[BUFFER_SIZE];
@@ -25,14 +43,8 @@ typedef struct meta_command {
 typedef struct exec_command {
     type_t type;
     int argc;
-    char argv[MAXARGS][MAXARGLEN];
+    char *argv[MAXARGS];
 } exec_command;
-
-#define TYPE_IN 1
-#define TYPE_OUT 2
-#define TYPE_APPEND 3
-#define TYPE_INOUT 4
-#define TYPE_INAPPEND 5
 
 typedef struct redi_command {
     type_t type;
@@ -51,7 +63,7 @@ typedef struct pipe_command {
 void get_command() {
     command_index = 0;
     printf("=> ");
-    gets_s(command_buffer, 1024);
+    gets(command_buffer);
 }
 
 bool is_valid_char(char c) {
@@ -59,13 +71,6 @@ bool is_valid_char(char c) {
         return false;
     return true;
 }
-
-#define TOK_END 0
-#define TOK_STR 1
-#define TOK_APP 2
-#define TOK_OUT 3
-#define TOK_INF 4
-#define TOK_PIP 5
 
 int get_basic_string() {
     int token_index = 0;
@@ -90,7 +95,7 @@ int lex() {
                 command_index += 1;
                 break;
             case '>':
-                if(token_buffer[command_index + 1] == '>') {
+                if(command_buffer[command_index + 1] == '>') {
                     token_buffer[0] = '>';
                     token_buffer[1] = '>';
                     token_buffer[2] = '\0';
@@ -136,8 +141,6 @@ pipe_command *build_pipe_command(meta_command *left, meta_command *right) {
 }
 
 redi_command *build_redi_command(exec_command *real_command, char *in_file, char *out_file, int redi_type) {
-    puts(in_file);
-    puts(out_file);
     redi_command *command = malloc(sizeof(redi_command));
     memset(command, 0, sizeof(redi_command));
     command->type = TYPE_REDI;
@@ -154,6 +157,7 @@ meta_command *parse_command() {
     command->type = TYPE_EXEC;
     int token_type;
     while ((token_type = lex()) == TOK_STR) {
+        command->argv[command->argc] = malloc(strlen(token_buffer) + 1);
         strcpy(command->argv[command->argc], token_buffer);
         command->argc ++;
     }
@@ -168,7 +172,6 @@ meta_command *parse_command() {
             char buffered_op[MAXARGLEN];
             strcpy(buffered_op, token_buffer);
             int next_type = lex();
-            printf("%d %d %s %s", curr_type, next_type, buffered_op, token_buffer);
             if(next_type == TOK_STR) {
                 command->type = TYPE_EROR;
                 return (meta_command *)command;
@@ -211,35 +214,100 @@ meta_command *parse_command() {
     }
 }
 
-void print_command(meta_command *command) {
+void run_command(meta_command *command) {
+    int fd;
+    int pipe_fd[2];
     switch (command->type) {
-        case TYPE_EROR:
-            puts("ERROR");
-            return;
-        case TYPE_EXEC:
-            printf("Running command: %s\n", ((exec_command *)command)->argv[0]);
-            return;
-        case TYPE_REDI:
-            printf("Running command: %s with input as %s, output as %s\n",
-                    ((redi_command *)command)->real_command->argv[0],
-                   ((redi_command *)command)->in_file,
-                   ((redi_command *)command)->out_file);
-            return;
-        case TYPE_PIPE:
-            puts("PIPELINE ==>");
-            print_command(((pipe_command *)command)->left);
-            print_command(((pipe_command *)command)->right);
-            return;
-        default:
-            return;
+    case TYPE_EXEC:
+        execvp(((exec_command *)command)->argv[0], ((exec_command *)command)->argv);
+        break;
+    case TYPE_REDI:
+        switch(((redi_command *)command)->redi_type) {
+        case TYPE_IN:
+            if((fd = open(((redi_command *)command)->in_file, O_RDONLY)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDIN_FILENO);
+            close(fd);
+            break;
+        case TYPE_APPEND:
+            if((fd = open(((redi_command *)command)->out_file, O_WRONLY | O_APPEND | O_CREAT, 0666)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDOUT_FILENO);
+            close(fd);
+            break;
+        case TYPE_OUT:
+            if((fd = open(((redi_command *)command)->out_file, O_WRONLY | O_CREAT, 0666)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDOUT_FILENO);
+            close(fd);
+            break;
+        case TYPE_INOUT:
+            if((fd = open(((redi_command *)command)->out_file, O_WRONLY | O_CREAT, 0666)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDOUT_FILENO);
+            close(fd);
+            if((fd = open(((redi_command *)command)->in_file, O_RDONLY)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDIN_FILENO);
+            close(fd);
+            break;
+        case TYPE_INAPPEND:
+            if((fd = open(((redi_command *)command)->out_file, O_WRONLY | O_APPEND | O_CREAT, 0666)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDOUT_FILENO);
+            close(fd);
+            if((fd = open(((redi_command *)command)->in_file, O_RDONLY)) == -1) {
+                puts("Open file failed.");
+                return;
+            }
+            dup2(fd, STDIN_FILENO);
+            close(fd);
+            break;
+        }
+        run_command((meta_command *)((redi_command *)command)->real_command);
+        break;
+    case TYPE_PIPE:
+        pipe(pipe_fd);
+        if(fork() == 0) {
+            dup2(pipe_fd[1], STDOUT_FILENO);
+            close(pipe_fd[0]);
+            close(pipe_fd[1]);
+            run_command((meta_command *)((pipe_command *)command)->left);
+        }
+        if(fork() == 0) {
+            dup2(pipe_fd[0], STDIN_FILENO);
+            close(pipe_fd[0]);
+            close(pipe_fd[1]);
+            run_command((meta_command *)((pipe_command *)command)->left);
+        }
+        wait();
+        wait();
+        break;
+    default:
+        break;
     }
 }
 
 int main() {
     while(1) {
         get_command();
-        meta_command *command = parse_command();
-        print_command(command);
+        if(fork() == 0) {
+            meta_command *command = parse_command();
+            run_command(command);
+        }
+        wait();
     }
     return 0;
 }
