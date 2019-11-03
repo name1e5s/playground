@@ -1,0 +1,293 @@
+### DEBUG RIP INFO DISPLAYED ON R5
+Router#
+00:05:17: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:17: OSPF: End of hello processing
+00:05:18: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:18: OSPF: End of hello processing
+00:05:22: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:22: OSPF: End of hello processing
+00:05:23: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:23: OSPF: End of hello processing
+00:05:27: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:27: OSPF: End of hello processing
+00:05:28: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:28: OSPF: End of hello processing
+00:05:32: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:32: OSPF: End of hello processing
+00:05:33: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:33: OSPF: End of hello processing
+00:05:37: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:37: OSPF: End of hello processing
+00:05:38: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:38: OSPF: End of hello processing
+00:05:42: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:42: OSPF: End of hello processing
+00:05:43: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:43: OSPF: End of hello processing
+00:05:47: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:47: OSPF: End of hello processing
+00:05:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:48: OSPF: End of hello processing
+00:05:52: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:52: OSPF: End of hello processing
+00:05:53: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:53: OSPF: End of hello processing
+00:05:57: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:05:57: OSPF: End of hello processing
+00:05:58: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:05:58: OSPF: End of hello processing
+00:06:02: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:02: OSPF: End of hello processing
+00:06:03: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:03: OSPF: End of hello processing
+00:06:07: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:07: OSPF: End of hello processing
+00:06:08: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:08: OSPF: End of hello processing
+00:06:12: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:12: OSPF: End of hello processing
+00:06:13: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:13: OSPF: End of hello processing
+00:06:17: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:17: OSPF: End of hello processing
+00:06:18: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:18: OSPF: End of hello processing
+00:06:22: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:22: OSPF: End of hello processing
+00:06:23: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:23: OSPF: End of hello processing
+00:06:27: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:27: OSPF: End of hello processing
+00:06:28: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:28: OSPF: End of hello processing
+00:06:32: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:32: OSPF: End of hello processing
+00:06:33: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:33: OSPF: End of hello processing
+00:06:37: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:37: OSPF: End of hello processing
+00:06:38: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:38: OSPF: End of hello processing
+00:06:42: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:42: OSPF: End of hello processing
+00:06:43: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:43: OSPF: End of hello processing
+00:06:47: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:47: OSPF: End of hello processing
+00:06:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:48: OSPF: End of hello processing
+00:06:52: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:52: OSPF: End of hello processing
+00:06:53: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:53: OSPF: End of hello processing
+00:06:57: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:06:57: OSPF: End of hello processing
+00:06:58: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:06:58: OSPF: End of hello processing
+00:07:02: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:02: OSPF: End of hello processing
+00:07:03: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:03: OSPF: End of hello processing
+00:07:07: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:07: OSPF: End of hello processing
+00:07:08: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:08: OSPF: End of hello processing
+00:07:12: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:12: OSPF: End of hello processing
+00:07:13: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:13: OSPF: End of hello processing
+00:07:17: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:17: OSPF: End of hello processing
+00:07:18: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:18: OSPF: End of hello processing
+00:07:22: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:22: OSPF: End of hello processing
+00:07:23: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:23: OSPF: End of hello processing
+00:07:27: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:27: OSPF: End of hello processing
+00:07:28: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:28: OSPF: End of hello processing
+00:07:32: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:32: OSPF: End of hello processing
+00:07:33: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:33: OSPF: End of hello processing
+00:07:37: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:37: OSPF: End of hello processing
+00:07:38: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:38: OSPF: End of hello processing
+00:07:42: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:42: OSPF: End of hello processing
+00:07:43: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:43: OSPF: End of hello processing
+00:07:47: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:47: OSPF: End of hello processing
+00:07:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:48: OSPF: End of hello processing
+00:07:52: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:52: OSPF: End of hello processing
+00:07:53: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:53: OSPF: End of hello processing
+00:07:55: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:07:55: OSPF: Interface Serial1/2 going Up
+00:07:56: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/2, changed state to up
+00:07:57: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:07:57: OSPF: End of hello processing
+00:07:58: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:07:58: OSPF: End of hello processing
+00:08:00: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:00: OSPF: 2 Way Communication to 202.240.8.1 on Serial1/2, state 2WAY
+00:08:00: OSPF: Send DBD to 202.240.8.1 on Serial1/2 seq 0x1004 opt 0x42 flag 0x7 len 32
+00:08:00: OSPF: End of hello processing
+00:08:00: OSPF: Rcv DBD from 202.240.8.1 on Serial1/2 seq 0x9C5 opt 0x42 flag 0x7 len 32  mtu 1500 state EXSTART
+00:08:00: OSPF: NBR Negotiation Done. We are the SLAVE
+00:08:00: OSPF: Send DBD to 202.240.8.1 on Serial1/2 seq 0x9C5 opt 0x42 flag 0x2 len 132
+00:08:01: OSPF: Rcv DBD from 202.240.8.1 on Serial1/2 seq 0x9C6 opt 0x42 flag 0x3 len 52  mtu 1500 state EXCHANGE
+00:08:01: OSPF: Send DBD to 202.240.8.1 on Serial1/2 seq 0x9C6 opt 0x42 flag 0x0 len 32
+00:08:01: OSPF: Database request to 202.240.8.1
+00:08:01: OSPF: sent LS REQ packet to 202.240.5.2, length 12
+00:08:01: OSPF: Rcv DBD from 202.240.8.1 on Serial1/2 seq 0x9C7 opt 0x42 flag 0x1 len 32  mtu 1500 state EXCHANGE
+00:08:01: OSPF: Exchange Done with 202.240.8.1 on Serial1/2
+00:08:01: OSPF: Send DBD to 202.240.8.1 on Serial1/2 seq 0x9C7 opt 0x42 flag 0x0 len 32
+00:08:01: OSPF: Synchronized with 202.240.8.1 on Serial1/2, state FULL
+00:08:01: %OSPF-5-ADJCHG: Process 20, Nbr 202.240.8.1 on Serial1/2 from LOADING to FULL, Loading Done
+00:08:02: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:02: OSPF: End of hello processing
+00:08:03: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:03: OSPF: End of hello processing
+00:08:05: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:05: OSPF: End of hello processing
+00:08:07: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:07: OSPF: End of hello processing
+00:08:08: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:08: OSPF: End of hello processing
+00:08:10: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:10: OSPF: End of hello processing
+00:08:12: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:12: OSPF: End of hello processing
+00:08:13: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:13: OSPF: End of hello processing
+00:08:15: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:15: OSPF: End of hello processing
+00:08:17: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:17: OSPF: End of hello processing
+00:08:18: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:18: OSPF: End of hello processing
+00:08:20: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:20: OSPF: End of hello processing
+00:08:22: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:22: OSPF: End of hello processing
+00:08:23: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:23: OSPF: End of hello processing
+00:08:25: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:25: OSPF: End of hello processing
+00:08:27: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:27: OSPF: End of hello processing
+00:08:28: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:28: OSPF: End of hello processing
+00:08:30: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:30: OSPF: End of hello processing
+00:08:32: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:32: OSPF: End of hello processing
+00:08:33: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:33: OSPF: End of hello processing
+00:08:35: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:35: OSPF: End of hello processing
+00:08:37: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:37: OSPF: End of hello processing
+00:08:38: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:38: OSPF: End of hello processing
+00:08:40: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:40: OSPF: End of hello processing
+00:08:42: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:42: OSPF: End of hello processing
+00:08:43: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:43: OSPF: End of hello processing
+00:08:45: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:45: OSPF: End of hello processing
+00:08:47: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:47: OSPF: End of hello processing
+00:08:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:48: OSPF: End of hello processing
+00:08:50: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:50: OSPF: End of hello processing
+00:08:52: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:52: OSPF: End of hello processing
+00:08:53: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:53: OSPF: End of hello processing
+00:08:55: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:08:55: OSPF: End of hello processing
+00:08:57: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:08:57: OSPF: End of hello processing
+00:08:58: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:08:58: OSPF: End of hello processing
+00:09:00: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:00: OSPF: End of hello processing
+00:09:02: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:02: OSPF: End of hello processing
+00:09:03: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:03: OSPF: End of hello processing
+00:09:05: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:05: OSPF: End of hello processing
+00:09:07: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:07: OSPF: End of hello processing
+00:09:08: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:08: OSPF: End of hello processing
+00:09:10: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:10: OSPF: End of hello processing
+00:09:12: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:12: OSPF: End of hello processing
+00:09:13: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:13: OSPF: End of hello processing
+00:09:15: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:15: OSPF: End of hello processing
+00:09:17: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:17: OSPF: End of hello processing
+00:09:18: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:18: OSPF: End of hello processing
+00:09:20: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:20: OSPF: End of hello processing
+00:09:22: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:22: OSPF: End of hello processing
+00:09:23: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:23: OSPF: End of hello processing
+00:09:25: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:25: OSPF: End of hello processing
+00:09:27: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:27: OSPF: End of hello processing
+00:09:28: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:28: OSPF: End of hello processing
+00:09:30: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:30: OSPF: End of hello processing
+00:09:32: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:32: OSPF: End of hello processing
+00:09:33: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:33: OSPF: End of hello processing
+00:09:35: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:35: OSPF: End of hello processing
+00:09:37: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:37: OSPF: End of hello processing
+00:09:38: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:38: OSPF: End of hello processing
+00:09:40: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:40: OSPF: End of hello processing
+00:09:42: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:42: OSPF: End of hello processing
+00:09:43: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:43: OSPF: End of hello processing
+00:09:45: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:45: OSPF: End of hello processing
+00:09:47: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:47: OSPF: End of hello processing
+00:09:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:48: OSPF: End of hello processing
+00:09:50: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:50: OSPF: End of hello processing
+00:09:52: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:52: OSPF: End of hello processing
+00:09:53: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1
+00:09:53: OSPF: End of hello processing
+00:09:55: OSPF: Rcv hello from 202.240.8.1 area 0 from Serial1/2 202.240.5.2
+00:09:55: OSPF: End of hello processing
+00:09:57: OSPF: Rcv hello from 202.240.9.2 area 0 from Serial1/0 202.240.3.1
+00:09:57: OSPF: End of hello processing

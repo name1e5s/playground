@@ -1,0 +1,292 @@
+list
+start R1
+idlepc get R1
+
+idlepc save R1 db
+start R2
+start R3
+start R4
+start R5
+start R6
+start R7
+start R8
+start R9
+start R10
+start PC1
+idlepc get PC1
+
+idlepc save PC1 db
+start PC2
+start PC3
+
+== In 3001
+en
+conf
+
+interface s 1/0
+clock rate 115200
+ip add 202.240.9.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+clock rate 115200
+ip add 202.240.2.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.9.0
+network 202.240.2.0
+neighbor 202.240.9.2
+neighbor 202.240.2.2
+exit
+exit
+
+== In 3002
+en
+conf
+
+interface s 1/0
+ip add 202.240.9.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+clock rate 115200
+ip add 202.240.1.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/2
+clock rate 115200
+ip add 202.240.3.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.9.0
+network 202.240.1.0
+network 202.240.3.0
+neighbor 202.240.9.1
+neighbor 202.240.1.2
+neighbor 202.240.3.2
+exit
+exit
+
+== In 3003
+en
+conf
+
+interface s 1/0
+ip add 202.240.1.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface f 0/0
+ip add 202.240.34.1 255.255.255.0
+no shutdown
+exit
+no cdp run
+router rip
+version 2
+network 202.240.1.0
+network 202.240.34.0
+neighbor 202.240.1.1
+exit
+exit
+
+== In 3004
+en
+conf
+
+interface s 1/0
+ip add 202.240.2.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+clock rate 115200
+ip add 202.240.4.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface f 0/0
+ip add 202.240.35.1 255.255.255.0
+no shutdown
+exit
+router rip
+version 2
+network 202.240.2.0
+network 202.240.4.0
+network 202.240.35.0
+neighbor 202.240.2.1
+neighbor 202.240.4.2
+exit
+exit
+
+== In 3005
+en
+conf
+
+interface s 1/0
+ip add 202.240.3.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+ip add 202.240.4.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/2
+clock rate 115200
+ip add 202.240.5.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.3.0
+network 202.240.4.0
+network 202.240.5.0
+neighbor 202.240.3.1
+neighbor 202.240.4.1
+neighbor 202.240.5.2
+exit
+exit
+
+
+== In 3006
+en
+conf
+
+interface s 1/0
+clock rate 115200
+ip add 202.240.6.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface f 0/0
+ip add 202.240.33.1 255.255.255.0
+no shutdown
+exit
+no cdp run
+router rip
+version 2
+network 202.240.6.0
+network 202.240.33.0
+neighbor 202.240.6.2
+exit
+exit
+
+
+== In 3007
+en
+conf
+
+interface s 1/0
+clock rate 115200
+ip add 202.240.7.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.7.0
+neighbor 202.240.7.2
+exit
+exit
+
+
+== In 3008
+en
+conf
+
+interface s 1/0
+ip add 202.240.5.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+ip add 202.240.7.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/2
+clock rate 115200
+ip add 202.240.8.1 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.5.0
+network 202.240.7.0
+network 202.240.8.0
+neighbor 202.240.5.1
+neighbor 202.240.7.1
+neighbor 202.240.8.2
+exit
+exit
+
+== In 3009
+en
+conf
+
+interface s 1/0
+ip add 202.240.6.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+interface s 1/1
+ip add 202.240.8.2 255.255.255.0
+encapsulation PPP
+no shutdown
+exit
+router rip
+version 2
+network 202.240.6.0
+network 202.240.8.0
+neighbor 202.240.6.1
+neighbor 202.240.8.1
+exit
+exit
+
+== In 3101
+en
+conf
+
+ip route 0.0.0.0 0.0.0.0 F 0/0
+interface f 0/0
+ip add 202.240.33.33 255.255.255.0
+no shutdown
+exit
+no cdp run
+exit
+
+== In 3102
+en
+conf
+
+ip route 0.0.0.0 0.0.0.0 F 0/0
+interface f 0/0
+ip add 202.240.34.33 255.255.255.0
+no shutdown
+exit
+no cdp run
+exit
+
+== In 3103
+en
+conf
+
+ip route 0.0.0.0 0.0.0.0 F 0/0
+interface f 0/0
+ip add 202.240.35.33 255.255.255.0
+no shutdown
+exit
+no cdp run
+exit

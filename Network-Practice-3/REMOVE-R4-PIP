@@ -1,0 +1,588 @@
+### R5 DEBUG INFO ON REMOVAL OF R4
+Router#debug ip rip
+RIP protocol debugging is on
+Router#
+00:47:36: RIP: received v2 update from 202.240.4.1 on Serial1/1
+00:47:36:      202.240.2.0/24 via 0.0.0.0 in 1 hops
+00:47:36:      202.240.9.0/24 via 0.0.0.0 in 2 hops
+00:47:36:      202.240.35.0/24 via 0.0.0.0 in 1 hops
+00:47:36: RIP: received v2 update from 202.240.4.1 on Serial1/1
+00:47:36:      202.240.2.0/24 via 0.0.0.0 in 1 hops
+00:47:36:      202.240.9.0/24 via 0.0.0.0 in 2 hops
+00:47:36:      202.240.35.0/24 via 0.0.0.0 in 1 hops
+00:47:39: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:47:39:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:47:39:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:47:39:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:47:39:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:47:39: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:47:39:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:47:39:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:47:39:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:47:39:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:47:49: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:47:49:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49: RIP: sending v2 update to 224.0.0.9 via Serial1/1 (202.240.4.2)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:47:49:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49: RIP: sending v2 update to 202.240.4.1 via Serial1/1 (202.240.4.2)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:47:49:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:47:49: RIP: build update entries
+00:47:49:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:47:49:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:47:49:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:49:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:47:49:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:47:55: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:47:55:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:47:55:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:47:55:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:47:55:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:47:55: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:47:55:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:47:55:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:47:55:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:47:55:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:48:03: RIP: received v2 update from 202.240.4.1 on Serial1/1
+00:48:03:      202.240.2.0/24 via 0.0.0.0 in 1 hops
+00:48:03:      202.240.9.0/24 via 0.0.0.0 in 2 hops
+00:48:03:      202.240.35.0/24 via 0.0.0.0 in 1 hops
+00:48:03: RIP: received v2 update from 202.240.4.1 on Serial1/1
+00:48:03:      202.240.2.0/24 via 0.0.0.0 in 1 hops
+00:48:03:      202.240.9.0/24 via 0.0.0.0 in 2 hops
+00:48:03:      202.240.35.0/24 via 0.0.0.0 in 1 hops
+00:48:06: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:48:06:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:48:06:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:48:06:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:48:06:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:48:06: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:48:06:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:48:06:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:48:06:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:48:06:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+Router#
+00:48:18: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:18:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18: RIP: sending v2 update to 224.0.0.9 via Serial1/1 (202.240.4.2)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:18:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18: RIP: sending v2 update to 202.240.4.1 via Serial1/1 (202.240.4.2)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:18:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:48:18: RIP: build update entries
+00:48:18:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:18:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:18:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:18:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:18:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:25: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:48:25:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:48:25:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:48:25:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:48:25:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:48:25: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:48:25:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:48:25:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:48:25:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:48:25:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:48:34: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:48:34:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:48:34:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:48:34:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:48:34:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:48:34: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:48:34:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:48:34:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:48:34:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:48:34:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:48:48: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:48:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48: RIP: sending v2 update to 224.0.0.9 via Serial1/1 (202.240.4.2)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:48:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48: RIP: sending v2 update to 202.240.4.1 via Serial1/1 (202.240.4.2)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:48:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:48:48: RIP: build update entries
+00:48:48:       202.240.2.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.4.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:48:48:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:48:48:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:48:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:48:48:       202.240.35.0/24 via 0.0.0.0, metric 2, tag 0
+00:48:52: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:48:52:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:48:52:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:48:52:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:48:52:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:48:52: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:48:52:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:48:52:      202.240.2.0/24 via 0.0.0.0 in 2 hops
+00:48:52:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:48:52:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:49:04: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:04:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:04:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:04:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:04:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:04: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:04:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:04:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:04:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:04:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:12: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to down
+00:49:13: RIP: sending v2 flash update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:49:13: RIP: build flash update entries - suppressing null update
+00:49:13: RIP: sending v2 flash update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:49:13: RIP: build flash update entries - suppressing null update
+00:49:13: RIP: sending v2 flash update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:49:13: RIP: build flash update entries - suppressing null update
+00:49:13: RIP: sending v2 flash update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:49:13: RIP: build flash update entries - suppressing null update
+00:49:15: RIP: sending v2 flash update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:49:15: RIP: build flash update entries
+00:49:15:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15: RIP: sending v2 flash update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:49:15: RIP: build flash update entries
+00:49:15:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15: RIP: sending v2 flash update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:49:15: RIP: build flash update entries
+00:49:15:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15: RIP: sending v2 flash update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:49:15: RIP: build flash update entries
+00:49:15:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:15:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:49:16: RIP: build update entries
+00:49:16:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:16:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:16:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:49:16:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:49:16: RIP: build update entries
+00:49:16:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:16:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:16:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:49:16: RIP: build update entries
+00:49:16:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:16:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:16:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:49:16: RIP: build update entries
+00:49:16:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:16:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:16:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:16:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:16:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:49:16:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:17: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:17:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:17:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:17:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:17:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:17:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:19:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:49:19:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:49:19:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:49:19:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:19:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:49:19:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:19:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:49:19:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:49:19:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:32:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:32:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:32:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:32:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:32:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:32:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:32:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:32:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:32:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:32:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:32:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:43: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:49:43: RIP: build update entries
+00:49:43:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:43:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:43:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:49:43:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:49:43: RIP: build update entries
+00:49:43:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:43:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:43:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:49:43: RIP: build update entries
+00:49:43:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:43:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:43:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:49:43: RIP: build update entries
+00:49:43:       202.240.2.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.4.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:43:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:49:43:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:49:43:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:49:43:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:49:43:       202.240.35.0/24 via 0.0.0.0, metric 16, tag 0
+00:49:47: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:47:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:49:47:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:47:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:47:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:49:47:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:49:47:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:47: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:49:47:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:49:47:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:47:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:47:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:49:47:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:49:47:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:59:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:59:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:59:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:59:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:59:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:49:59:      202.240.2.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59:      202.240.4.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:49:59:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:49:59:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:49:59:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:49:59:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:49:59:      202.240.35.0/24 via 0.0.0.0 in 16 hops  (inaccessible)
+00:50:09: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:50:09: RIP: build update entries
+00:50:09:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:09:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:09:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:50:09: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:50:09: RIP: build update entries
+00:50:09:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:09:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:09: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:50:09: RIP: build update entries
+00:50:09:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:09:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:09: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:50:09: RIP: build update entries
+00:50:09:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:09:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:09:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:09:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:50:15: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:50:15:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:50:15:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:50:15:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:50:15: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:50:15:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:50:15:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:50:15:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:50:28: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:50:28:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:50:28:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:50:28:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:50:28:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:50:28: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:50:28:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:50:28:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:50:28:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:50:28:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:50:37: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:50:37: RIP: build update entries
+00:50:37:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:37:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:37:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:50:37: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:50:37: RIP: build update entries
+00:50:37:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:37:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:37: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:50:37: RIP: build update entries
+00:50:37:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:37:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:37: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:50:37: RIP: build update entries
+00:50:37:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:50:37:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:50:37:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:50:37:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:50:45: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:50:45:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:50:45:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:50:45:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:50:45: RIP: received v2 update from 202.240.3.1 on Serial1/0
+00:50:45:      202.240.1.0/24 via 0.0.0.0 in 1 hops
+00:50:45:      202.240.9.0/24 via 0.0.0.0 in 1 hops
+00:50:45:      202.240.34.0/24 via 0.0.0.0 in 2 hops
+00:50:55: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:50:55:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:50:55:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:50:55:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:50:55:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:50:55: RIP: received v2 update from 202.240.5.2 on Serial1/2
+00:50:55:      202.240.6.0/24 via 0.0.0.0 in 2 hops
+00:50:55:      202.240.7.0/24 via 0.0.0.0 in 1 hops
+00:50:55:      202.240.8.0/24 via 0.0.0.0 in 1 hops
+00:50:55:      202.240.33.0/24 via 0.0.0.0 in 3 hops
+00:51:03: RIP: sending v2 update to 224.0.0.9 via Serial1/0 (202.240.3.2)
+00:51:03: RIP: build update entries
+00:51:03:       202.240.5.0/24 via 0.0.0.0, metric 1, tag 0
+00:51:03:       202.240.6.0/24 via 0.0.0.0, metric 3, tag 0
+00:51:03:       202.240.7.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.8.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.33.0/24 via 0.0.0.0, metric 4, tag 0
+00:51:03: RIP: sending v2 update to 224.0.0.9 via Serial1/2 (202.240.5.1)
+00:51:03: RIP: build update entries
+00:51:03:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:51:03:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:51:03: RIP: sending v2 update to 202.240.5.2 via Serial1/2 (202.240.5.1)
+00:51:03: RIP: build update entries
+00:51:03:       202.240.1.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.3.0/24 via 0.0.0.0, metric 1, tag 0
+00:51:03:       202.240.9.0/24 via 0.0.0.0, metric 2, tag 0
+00:51:03:       202.240.34.0/24 via 0.0.0.0, metric 3, tag 0
+00:51:03: RIP: sending v2 update to 202.240.3.1 via Serial1/0 (202.240.3.2)
+00:51:03: RIP: build update entries
+
+Router#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+R    202.240.6.0/24 [120/2] via 202.240.5.2, 00:00:07, Serial1/2
+R    202.240.7.0/24 [120/1] via 202.240.5.2, 00:00:07, Serial1/2
+     202.240.5.0/24 is variably subnetted, 2 subnets, 2 masks
+C       202.240.5.2/32 is directly connected, Serial1/2
+C       202.240.5.0/24 is directly connected, Serial1/2
+R    202.240.33.0/24 [120/3] via 202.240.5.2, 00:00:07, Serial1/2
+     202.240.3.0/24 is variably subnetted, 2 subnets, 2 masks
+C       202.240.3.1/32 is directly connected, Serial1/0
+C       202.240.3.0/24 is directly connected, Serial1/0
+R    202.240.34.0/24 [120/2] via 202.240.3.1, 00:00:17, Serial1/0
+R    202.240.1.0/24 [120/1] via 202.240.3.1, 00:00:17, Serial1/0
+R    202.240.8.0/24 [120/1] via 202.240.5.2, 00:00:07, Serial1/2
+R    202.240.9.0/24 [120/1] via 202.240.3.1, 00:00:17, Serial1/0
+Router#
+

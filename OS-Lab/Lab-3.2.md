@@ -1,3 +1,16 @@
+# 实验 3.2 Linux 下简易 Shell 的实现
+
+###  实验内容
+
+在这次实验，我们实现了一个简单的带有重定向功能和管道功能的管道。
+
+### 设计思路
+
+整个 shell 分为两部分，前端部分负责读取用户输入并解析，后端负责使用 `fork` 等系统调用执行指令。
+
+### 实现代码
+
+```C
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -122,13 +135,6 @@ int lex() {
         }
     }
     return TOK_END;
-}
-
-char peek() {
-    int i = 0;
-    while(command_buffer[command_index + i] != '\0' && (command_buffer[command_index + i] == ' ' || command_buffer[command_index + i] == '\t'))
-        i ++;
-    return command_buffer[command_index + i];
 }
 
 pipe_command *build_pipe_command(meta_command *left, meta_command *right) {
@@ -303,6 +309,9 @@ void run_command(meta_command *command) {
 int main() {
     while(1) {
         get_command();
+        if (!strcmp(command_buffer, "exit")) {
+            exit(0);
+        }
         if(fork() == 0) {
             meta_command *command = parse_command();
             run_command(command);
@@ -311,3 +320,57 @@ int main() {
     }
     return 0;
 }
+```
+
+### 演示效果
+
+```bash
+name1e5s@ubuntu:~$ gcc Lab-3.c
+Lab-3.c: In function ‘get_command’:
+Lab-3.c:66:5: warning: implicit declaration of function ‘gets’; did you mean ‘fgets’? [-Wimplicit-function-declaration]
+   66 |     gets(command_buffer);
+      |     ^~~~
+      |     fgets
+Lab-3.c: In function ‘run_command’:
+Lab-3.c:295:9: warning: implicit declaration of function ‘wait’ [-Wimplicit-function-declaration]
+  295 |         wait();
+      |         ^~~~
+/usr/bin/ld: /tmp/ccjpGWCM.o: in function `get_command':
+Lab-3.c:(.text+0x30): warning: the `gets' function is dangerous and should not be used.
+name1e5s@ubuntu:~$ ./a.out
+=> ls -la > test.txt
+=> cat test.txt
+total 136
+drwxr-xr-x 20 name1e5s name1e5s  4096 Oct 28 07:34 .
+drwxr-xr-x  3 root     root      4096 Oct 25 06:56 ..
+-rwxrwxr-x  1 name1e5s name1e5s 17840 Oct 28 07:34 a.out
+-rw-------  1 name1e5s name1e5s  3068 Oct 28 07:29 .bash_history
+-rw-r--r--  1 name1e5s name1e5s   220 Oct 25 06:56 .bash_logout
+-rw-r--r--  1 name1e5s name1e5s  3771 Oct 25 06:56 .bashrc
+drwxr-x--- 15 name1e5s name1e5s  4096 Oct 28 07:23 .cache
+drwxr-x--- 15 name1e5s name1e5s  4096 Oct 27 03:35 .config
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Desktop
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Documents
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Downloads
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:23 .fontconfig
+drwx------  3 name1e5s name1e5s  4096 Oct 25 07:04 .gnupg
+drwxr-xr-x  3 name1e5s name1e5s  4096 Oct 27 03:40 lab2
+-rwxrw-rw-  1 name1e5s name1e5s 10486 Oct 28 07:29 Lab-3.c
+drwx------  3 name1e5s name1e5s  4096 Oct 25 07:05 .local
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Music
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Pictures
+drwx------  3 name1e5s name1e5s  4096 Oct 25 07:42 .pki
+-rw-r--r--  1 name1e5s name1e5s   807 Oct 25 06:56 .profile
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Public
+drwx------  2 name1e5s name1e5s  4096 Oct 25 08:15 .ssh
+-rw-r--r--  1 name1e5s name1e5s     0 Oct 25 07:12 .sudo_as_admin_successful
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Templates
+-rw-rw-r--  1 name1e5s name1e5s  1744 Oct 28 07:33 test.txt
+drwxr-xr-x  2 name1e5s name1e5s  4096 Oct 25 07:05 Videos
+drwxr-xr-x  3 name1e5s name1e5s  4096 Oct 25 07:42 .vscode
+drwxrwxr-x  5 name1e5s name1e5s  4096 Oct 25 08:17 .vscode-server
+-rw-r--r--  1 name1e5s name1e5s   280 Oct 25 08:17 .wget-hsts
+=> exit
+name1e5s@ubuntu:~$
+```
+

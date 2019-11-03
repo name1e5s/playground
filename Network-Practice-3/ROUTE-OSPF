@@ -1,0 +1,29 @@
+Router#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+O    202.240.6.0/24 [110/192] via 202.240.5.2, 00:01:40, Serial1/2
+O    202.240.7.0/24 [110/128] via 202.240.5.2, 00:01:40, Serial1/2
+     202.240.4.0/24 is variably subnetted, 2 subnets, 2 masks
+C       202.240.4.0/24 is directly connected, Serial1/1
+C       202.240.4.1/32 is directly connected, Serial1/1
+     202.240.5.0/24 is variably subnetted, 2 subnets, 2 masks
+C       202.240.5.2/32 is directly connected, Serial1/2
+C       202.240.5.0/24 is directly connected, Serial1/2
+O    202.240.2.0/24 [110/128] via 202.240.4.1, 00:01:40, Serial1/1
+O    202.240.33.0/24 [110/193] via 202.240.5.2, 00:01:40, Serial1/2
+     202.240.3.0/24 is variably subnetted, 2 subnets, 2 masks
+C       202.240.3.1/32 is directly connected, Serial1/0
+C       202.240.3.0/24 is directly connected, Serial1/0
+O    202.240.34.0/24 [110/129] via 202.240.3.1, 00:01:46, Serial1/0
+O    202.240.1.0/24 [110/128] via 202.240.3.1, 00:01:47, Serial1/0
+O    202.240.35.0/24 [110/65] via 202.240.4.1, 00:01:47, Serial1/1
+O    202.240.8.0/24 [110/128] via 202.240.5.2, 00:01:47, Serial1/2
+O    202.240.9.0/24 [110/128] via 202.240.3.1, 00:01:47, Serial1/0

@@ -1,0 +1,159 @@
+autostart = false
+
+[localhost]
+port = 7200
+udp = 10000
+workingdir = ..\tmp\
+
+    [[router R1]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3001
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/0 = R2 s1/0
+    s1/1 = R4 s1/0
+
+
+    [[router R2]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3002
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/1 = R3 s1/0
+    s1/2 = R5 s1/0
+
+    
+    [[router R3]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3003
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    f0/0 = PC2 f0/0
+
+
+    [[router R4]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3004
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/1 = R5 s1/1
+    f0/0 = PC3 f0/0
+
+
+    [[router R5]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3005
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/2 = R8 s1/0
+
+
+    [[router R6]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3006
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/0 = R9 s1/0
+    f0/0 = PC1 f0/0
+
+
+    [[router R7]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3007
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/0 = R8 s1/1
+
+
+    [[router R8]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3008
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+    s1/2 = R9 s1/1
+
+
+    [[router R9]]
+    image = ..\ios\unzip-c7200-is-mz.122-37.bin
+    model = 7200
+    console = 3009
+    npe = npe-400
+    ram = 64
+    confreg = 0x2102
+    exec_area = 64
+    mmap = false  
+    slot0 = PA-C7200-IO-FE
+    slot1 = PA-4T
+
+
+    [[router PC1]]
+	model = 2621
+	ram = 20
+	image = ..\ios\unzip-c2600-i-mz.121-3.T.bin
+	mmap = False
+	confreg = 0x2102
+	console = 3101
+    
+    [[router PC2]]
+	model = 2621
+	ram = 20
+	image = ..\ios\unzip-c2600-i-mz.121-3.T.bin
+	mmap = False
+	confreg = 0x2102
+	console = 3102
+
+    [[router PC3]]
+	model = 2621
+	ram = 20
+	image = ..\ios\unzip-c2600-i-mz.121-3.T.bin
+	mmap = False
+	confreg = 0x2102
+	console = 3103
