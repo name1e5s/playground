@@ -1,0 +1,50 @@
+From bce00e670e18b025e7c0a347e24d23a7b0d255d5 Mon Sep 17 00:00:00 2001
+From: name1e5s <name1e5s@bupt.edu.cn>
+Date: Tue, 5 Nov 2019 23:42:55 +0800
+Subject: [PATCH] Lab 4
+
+---
+ arch/x86/mm/fault.c | 6 ++++++
+ include/linux/mm.h  | 2 ++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/arch/x86/mm/fault.c b/arch/x86/mm/fault.c
+index 9ceacd1156db..043399229a00 100644
+--- a/arch/x86/mm/fault.c
++++ b/arch/x86/mm/fault.c
+@@ -33,6 +33,10 @@
+ #define CREATE_TRACE_POINTS
+ #include <asm/trace/exceptions.h>
+ 
++unsigned long volatile pfcount = 0;
++
++EXPORT_SYMBOL_GPL(pfcount);
++
+ /*
+  * Returns 0 if mmiotrace is disabled, or if the fault is not
+  * handled by mmiotrace:
+@@ -1525,6 +1529,8 @@ do_page_fault(struct pt_regs *regs, unsigned long error_code, unsigned long addr
+ {
+ 	enum ctx_state prev_state;
+ 
++	pfcount++;
++
+ 	prev_state = exception_enter();
+ 	trace_page_fault_entries(regs, error_code, address);
+ 	__do_page_fault(regs, error_code, address);
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index 0334ca97c584..9b568bba949b 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -4,6 +4,8 @@
+ 
+ #include <linux/errno.h>
+ 
++extern unsigned long volatile pfcount;
++
+ #ifdef __KERNEL__
+ 
+ #include <linux/mmdebug.h>
+-- 
+2.20.1
+
