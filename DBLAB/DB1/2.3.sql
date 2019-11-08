@@ -1,0 +1,2 @@
+USE [master]
+ALTER DATABASE [学生选课] MODIFY FILE ( NAME = N'学生选课', SIZE = 20480KB )
