@@ -69,3 +69,38 @@ SELECT AVG([分数]) AS [均分]
 FROM [dbo].[student_course]
 WHERE [课程ID号] = 'dep04_b001'
 -- 19
+SELECT A.[学生ID号],MAX([分数]) AS [最高分]
+FROM [dbo].[student] AS A INNER JOIN [dbo].[student_course] AS B
+ON A.[学生ID号] = B.[学生ID号] GROUP BY A.[学生ID号]
+HAVING COUNT(*) > 0
+-- 20
+WITH T AS(SELECT [dbo].[student].*, [dbo].[course].[课程名称], [dbo].[student_course].[分数], [dbo].[teacher_class_course].[班级号]
+FROM [dbo].[student_course] 
+INNER JOIN [dbo].[student] 
+ON [dbo].[student_course].[学生ID号] = [dbo].[student].[学生ID号] 
+INNER JOIN [dbo].[course]
+ON [dbo].[student_course].[课程ID号] = [dbo].[course].[课程号]
+INNER JOIN [dbo].[teacher_class_course]
+ON [dbo].[student_course].[课程ID号] = [dbo].[teacher_class_course].[课程号]
+INNER JOIN [dbo].[teacher]
+ON [dbo].[teacher].[教师ID号] = [dbo].[teacher_class_course].[教师编号]
+WHERE [dbo].[teacher].[教师姓名] = '严为'
+AND [dbo].[course].[课程名称] = '软件开发技术'
+AND [dbo].[teacher_class_course].[学年] = '2011/2012')
+SELECT 分数,学生ID号,学生姓名,班级号 FROM T
+WHERE [分数] = (
+SELECT MAX([分数]) FROM T
+)
+-- 21
+SELECT B.教材名, B.教材ID号, B.出版社
+FROM [dbo].course A INNER JOIN [dbo].book B
+ON A.书号 = B.教材ID号
+WHERE A.课程名称 LIKE '%数据库开发技术%'
+-- 22
+SELECT 教师姓名, 职称或职业
+FROM course C, department D, teacher T, teacher_class_course TCC
+WHERE C.课程名称 = 'JAVA程序设计与开发'
+AND C.课程号 = TCC.课程号
+AND TCC.教师编号 = T.教师ID号
+AND T.部门ID号 = D.部门ID号
+AND D.部门名称 = '计算机科学'
