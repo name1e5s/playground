@@ -77,11 +77,10 @@ FROM [dbo].[student] AS A INNER JOIN [dbo].[student_course] AS B
     ON A.[学生ID号] = B.[学生ID号]
 GROUP BY A.[学生ID号]
 HAVING COUNT(*) > 0
--- 20
+-- 20 -- SELECTED
 WITH
     T
     AS
-    
     (
         SELECT [dbo].[student].*, [dbo].[course].[课程名称], [dbo].[student_course].[分数], [dbo].[teacher_class_course].[班级号]
         FROM [dbo].[student_course]

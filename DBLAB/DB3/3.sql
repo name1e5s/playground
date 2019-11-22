@@ -30,7 +30,7 @@ SELECT 学生ID号
 FROM student_course
 WHERE 分数 < 60
 )
--- 27
+-- 27 -- SELECTED
 SELECT 学生ID号, 学生姓名, 性别, 家庭住址
 FROM student
 WHERE 学生ID号 IN (
@@ -64,8 +64,8 @@ WHERE 课程名称 LIKE '%计算机基础%'
 SELECT S.学生ID号, S.学生姓名
 FROM student S
 WHERE not exists(
-    (
-    SELECT T.课程ID号
+            (
+        SELECT T.课程ID号
     FROM student_course T
     WHERE T.学生ID号='g0940201'
     )
