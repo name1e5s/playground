@@ -404,7 +404,15 @@ O    202.240.9.0/24 [110/128] via 202.240.3.1, 00:01:47, Serial1/0
 00:08:02: OSPF: End of hello processing
 \end{lstlisting}
 
-在这份调试信息上，我们可以清晰的看到 OSPF 的 Hello 包发送以及互相交换数据库的详细信息。
+在这份调试信息上，我们可以清晰的看到 OSPF 的 Hello 包发送以及互相交换数据库的详细信息。举例如下：
+
+\begin{itemize}
+  \item \textbf{获取并处理别的路由器的 Hello 包} \texttt{00:07:48: OSPF: Rcv hello from 202.240.35.1 area 0 from Serial1/1 202.240.4.1}
+  \item \textbf{选举完毕} \texttt{00:08:00: OSPF: NBR Negotiation Done. We are the SLAVE}
+  \item \textbf{将选举后的信息发送出去进行确认} \texttt{00:08:00: OSPF: Send DBD to 202.240.8.1 on Serial1/2 seq 0x9C5 opt 0x42 flag 0x2 len 132}
+  \item \textbf{数据库同步完成，状态转换为 FULL} \texttt{00:08:01: \%OSPF-5-ADJCHG: Process 20, Nbr 202.240.8.1 on Serial1/2 from LOADING to FULL, Loading Done}
+\end{itemize}
+
 其符合 OSPF 的特点。
 
 OSPF 的包头如下：
@@ -505,8 +513,8 @@ Internet  202.240.34.33           -   c80a.2a20.0000  ARPA   FastEthernet0/0
 Internet  202.240.2.1             2   ca02.2a20.0000  ARPA   FastEthernet0/0
 \end{lstlisting}
 
-PPP链路网络中使用转发接口，不需要进行 ARP 解析即可发送数据。
-以太网则需要进行ARP解析，每次解析都会发生丢包。
+使用转发接口时，不需要进行 ARP 解析即可发送数据。
+使用下一条方式配置时，因为需要进行ARP解析，每次解析都会发生丢包。
 \subsection{对照所截获的消息，解释OSPF协议在邻居发现、
 链路状态数据库同步和链路状态更新时每条消息的含义}
 见第四章。
