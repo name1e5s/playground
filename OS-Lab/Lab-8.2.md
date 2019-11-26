@@ -19,8 +19,8 @@ name1e5s@asgard:~$ cat /proc/cpuinfo | grep 'processor' | wc -l
 #ifndef _COMMON
 #define _COMMON
 
-#define ORANGE_MAX_VALUE 1000000
-#define APPLE_MAX_VALUE 100000000
+#define ORANGE_MAX_VALUE 100000000
+#define APPLE_MAX_VALUE 10000000000
 #define MSECOND 1000000
 
 #endif
@@ -70,9 +70,9 @@ name1e5s@asgard:/data/playground/OS-Lab$ ls
 name1e5s@asgard:/data/playground/OS-Lab$ ./8.2.1 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./8.2.1 
 
-real    0m0.196s
-user    0m0.189s
-sys     0m0.004s
+real    0m16.253s
+user    0m16.156s
+sys     0m0.096s
 ```
 
 #### Two Thread
@@ -126,9 +126,9 @@ name1e5s@asgard:/data/playground/OS-Lab$ ls
 name1e5s@asgard:/data/playground/OS-Lab$ ./8.2.2 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./8.2.2 
 
-real    0m0.214s
-user    0m0.227s
-sys     0m0.004s
+real    0m16.867s
+user    0m17.138s
+sys     0m0.096s
 ```
 
 #### Three Threads
@@ -175,7 +175,7 @@ int main(void) {
 
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
@@ -193,9 +193,9 @@ name1e5s@asgard:/data/playground/OS-Lab$ gcc 8.2.3.c -lpthread
 name1e5s@asgard:/data/playground/OS-Lab$ ./a.out 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./a.out 
 
-real    0m0.341s
-user    0m0.344s
-sys     0m0.004s
+real    0m26.920s
+user    0m27.205s
+sys     0m0.076s
 ```
 
 ##### Lock Free
@@ -234,7 +234,7 @@ int main(void) {
 
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
@@ -252,9 +252,9 @@ name1e5s@asgard:/data/playground/OS-Lab$ gcc 8.2.3.lock_free.c -lpthread
 name1e5s@asgard:/data/playground/OS-Lab$ ./a.out 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./a.out 
 
-real    0m0.613s
-user    0m1.219s
-sys     0m0.004s
+real    0m46.774s
+user    1m30.510s
+sys     0m0.089s
 ```
 
 #### Cache Optimization
@@ -294,7 +294,7 @@ int main(void) {
 
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
@@ -312,9 +312,9 @@ name1e5s@asgard:/data/playground/OS-Lab$ gcc -DLEVEL1_DCACHE_LINESIZE=`getconf L
 name1e5s@asgard:/data/playground/OS-Lab$ ./a.out 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./a.out 
 
-real    0m0.502s
-user    0m0.957s
-sys     0m0.008s
+real    0m14.329s
+user    0m28.916s
+sys     0m0.100s
 ```
 ##### With Lock
 ```C
@@ -358,7 +358,7 @@ int main(void) {
 
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
@@ -372,13 +372,13 @@ int main(void) {
 ```
 
 ```bash
-name1e5s@asgard:/data/playground/OS-Lab$ gcc -DLEVEL1_DCACHE_LINESIZE=`getconf LEVEL1_DCACHE_LINESIZE` 8.2.4.c -lpthread
+name1e5s@asgard:/data/playground/OS-Lab$ gcc -DLEVEL1_DCACHE_LINESIZE=`getconf LEVEL1_DCACHE_LINESIZE` 8.2.4.2.c -lpthread
 name1e5s@asgard:/data/playground/OS-Lab$ ./a.out 
 name1e5s@asgard:/data/playground/OS-Lab$ time ./a.out 
 
-real    0m0.479s
-user    0m0.908s
-sys     0m0.000s
+real    0m27.632s
+user    0m27.889s
+sys     0m0.108s
 ```
 
 #### CPU AFF
@@ -442,17 +442,11 @@ int main(void) {
 ```bash
 name1e5s@asgard:/data/playground/OS-Lab$ gcc 8.2.5.c -lpthread
 name1e5s@asgard:/data/playground/OS-Lab$ ./a.out 
-name1e5s@asgard:/data/playground/OS-Lab$ time a.out
-a.out: command not found
-
-real    0m0.094s
-user    0m0.081s
-sys     0m0.013s
 name1e5s@asgard:/data/playground/OS-Lab$ time ./a.out
 
-real    0m0.228s
-user    0m0.228s
-sys     0m0.004s
+real    0m15.751s
+user    0m16.004s
+sys     0m0.096s
 ```
 
 ##### Three Thread
@@ -497,7 +491,7 @@ void *apple_operation_a(void *_unused) {
 }
 
 void *apple_operation_b(void *_unused) {
-    set_cpu_affinity(2);
+    set_cpu_affinity(3);
     for(unsigned long long sum = 0; sum < APPLE_MAX_VALUE; sum ++) {
         apple_test.b += sum;
     }
@@ -507,7 +501,7 @@ int main(void) {
     set_cpu_affinity(0);
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
@@ -524,7 +518,7 @@ int main(void) {
 name1e5s@asgard:/data/playground/OS-Lab/lab8$ gcc 8.2.5.2.c -lpthread
 name1e5s@asgard:/data/playground/OS-Lab/lab8$ time ./a.out 
 
-real    0m0.360s
-user    0m0.353s
-sys     0m0.004s
+real    0m56.916s
+user    1m52.630s
+sys     0m0.088s
 ```

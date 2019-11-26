@@ -38,7 +38,7 @@ void *apple_operation_a(void *_unused) {
 }
 
 void *apple_operation_b(void *_unused) {
-    set_cpu_affinity(2);
+    set_cpu_affinity(3);
     for(unsigned long long sum = 0; sum < APPLE_MAX_VALUE; sum ++) {
         apple_test.b += sum;
     }
