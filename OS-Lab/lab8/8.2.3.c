@@ -38,7 +38,7 @@ int main(void) {
 
     pthread_t apple_thread_a, apple_thread_b;
     pthread_create(&apple_thread_a, NULL, apple_operation_a, NULL);
-    pthread_create(&apple_thread_b, NULL, apple_operation_a, NULL);
+    pthread_create(&apple_thread_b, NULL, apple_operation_b, NULL);
     unsigned long long result = 0ULL;
 
     for(unsigned long long index = 0; index < ORANGE_MAX_VALUE; index ++) {
