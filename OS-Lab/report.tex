@@ -1783,6 +1783,7 @@ ORANGE\_MAX\_VALUE(100000000) 次。
 \lstinputlisting[language=C]{lab8/8.2.common.h}
 
 \paragraph{单线程/进程样例程序}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.1.c}
 运行时间：
 \begin{lstlisting}
@@ -1794,6 +1795,7 @@ sys     0m0.096s
 \end{lstlisting}
 
 \paragraph{两线程样例程序}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.2.c}
 运行时间：
 \begin{lstlisting}
@@ -1805,6 +1807,7 @@ sys     0m0.096s
 \end{lstlisting}
 
 \paragraph{三线程样例程序(无锁)}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.3.lock_free.c}
 运行时间：
 \begin{lstlisting}
@@ -1817,6 +1820,7 @@ sys     0m0.089s
 
 \subsubsection{3线程加锁 vs 3线程不加锁}
 \paragraph{三线程样例程序(加锁)}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.3.c}
 运行时间：
 \begin{lstlisting}
@@ -1829,6 +1833,7 @@ sys     0m0.076s
 
 \subsubsection{针对 Cache 的优化}
 \paragraph{三线程样例程序(无锁) —— Cache 优化}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.4.c}
 运行时间：
 \begin{lstlisting}
@@ -1839,6 +1844,7 @@ user    0m28.916s
 sys     0m0.100s
 \end{lstlisting}
 \paragraph{三线程样例程序(加锁) —— Cache 优化}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.4.2.c}
 运行时间：
 \begin{lstlisting}
@@ -1851,6 +1857,7 @@ sys     0m0.108s
 
 \subsubsection{CPU亲和力对并行程序影响}
 \paragraph{两线程样例程序 —— 亲和力优化}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.5.c}
 运行时间：
 \begin{lstlisting}
@@ -1861,6 +1868,7 @@ user    0m16.004s
 sys     0m0.096s
 \end{lstlisting}
 \paragraph{三线程样例程序(不加锁) —— 亲和力优化}
+\ 
 \lstinputlisting[language=C]{lab8/8.2.5.2.c}
 运行时间：
 \begin{lstlisting}
