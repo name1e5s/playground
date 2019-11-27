@@ -68,9 +68,9 @@ class LR1Parser:
             r_expression = self.table.grammer[action[1]]
             for i in range(len(r_expression[1])):
                 self.stack.pop()
-            self.stack.append((
-                self.table.goto[self.stack[-1][0]][r_expression[0]]
-                , r_expression[0]))
+            if action[1] != 0:
+                self.stack.append((
+                    self.table.goto[self.stack[-1][0]][r_expression[0]], r_expression[0]))
             print(r_expression[0] + '->' +
                   r_expression[1])
             return action[1] != 0

@@ -1,6 +1,6 @@
 class Grammer:
     def __init__(self):
-        self.startSymbol = 'S' # default start symbol
+        self.startSymbol = 'S'  # default start symbol
         self.nonTerminalSymbol = set()
         self.terminalSymbol = set()
         self.generatorExpression = {}
@@ -25,8 +25,10 @@ class Grammer:
             leftRecu = [i for i in v if i[0] == k]
             if leftRecu:
                 newSymbol = self.get_unused_non_terminal_symbol()
-                self.generatorExpression[k] = [i + newSymbol for i in v if i[0] != k]
-                self.generatorExpression[newSymbol] = [i[1:] + newSymbol for i in leftRecu]
+                self.generatorExpression[k] = [
+                    i + newSymbol for i in v if i[0] != k]
+                self.generatorExpression[newSymbol] = [
+                    i[1:] + newSymbol for i in leftRecu]
                 self.generatorExpression[newSymbol].append('')
 
     def compute_first_and_follow_set(self):
@@ -61,8 +63,10 @@ class Grammer:
                         self.firstSymbols[k].add('')
                     for i in expressions:
                         if add_new_first:
-                            self.firstSymbols[k] = self.firstSymbols[k].union(self.firstSymbols[i])
-                            add_new_first = add_new_first and (i in self.nonTerminalSymbol and self.nullable[i])
+                            self.firstSymbols[k] = self.firstSymbols[k].union(
+                                self.firstSymbols[i])
+                            add_new_first = add_new_first and (
+                                i in self.nonTerminalSymbol and self.nullable[i])
 
         old_follow_set = set()
         for k in self.nonTerminalSymbol:
@@ -81,18 +85,21 @@ class Grammer:
                     for i in range(len(expressions)):
                         add_follow = True
                         for j in range(i + 1, len(expressions)):
-                            add_follow = add_follow and (expressions[j] in self.nonTerminalSymbol and self.nullable[expressions[j]])
+                            add_follow = add_follow and (
+                                expressions[j] in self.nonTerminalSymbol and self.nullable[expressions[j]])
                         if add_follow:
-                            self.followSymbols[expressions[i]] = self.followSymbols[expressions[i]].union(
-                                                                    self.followSymbols[key])
+                            self.followSymbols[
+                                expressions[i]] = self.followSymbols[
+                                    expressions[i]].union(
+                                        self.followSymbols[key])
                         for j in range(i + 1, len(expressions)):
                             add_follow = True
                             for k in range(i + 1, j):
                                 add_follow = add_follow and (
-                                            expressions[k] in self.nonTerminalSymbol and self.nullable[expressions[k]])
+                                    expressions[k] in self.nonTerminalSymbol and self.nullable[expressions[k]])
                             if add_follow:
                                 self.followSymbols[expressions[i]] = self.followSymbols[expressions[i]].union(
-                                        self.firstSymbols[expressions[j]])
+                                    self.firstSymbols[expressions[j]])
         keys = list(self.firstSymbols.keys())
         for k in keys:
             if k not in self.nonTerminalSymbol:
@@ -140,6 +147,7 @@ class Grammer:
                     for i in self.followSymbols[k]:
                         self.llTable[k][i] = expressions
 
+
 class Lexer:
     def __init__(self, expression):
         self.token = None
@@ -176,18 +184,18 @@ class Lexer:
                     i += 1
             except:
                 self.expression = self.expression[i - 1:]
-                return 'n'#result
+                return 'n'  # result
         t = len(self.expression)
         self.expression = self.expression[i - 1:]
         return 'n' if i == t else result
 
 
-
 class LLParser:
-    def __init__(self, grammer,expression):
+    def __init__(self, grammer, expression):
         self.grammer = grammer
         self.lexer = Lexer(expression)
         self.stack = ['$', self.grammer.startSymbol]
+
     def _parse(self):
         if self.stack[-1] not in self.grammer.nonTerminalSymbol:
             if self.stack[-1] == self.lexer.peek_token():
@@ -196,8 +204,10 @@ class LLParser:
             else:
                 raise RuntimeError
         else:
-            expression = self.grammer.llTable[self.stack[-1]][self.lexer.peek_token()]
-            print(self.stack[-1] + ' -> ' + ('\'\'' if expression == '' else expression))
+            expression = self.grammer.llTable[self.stack[-1]
+                                              ][self.lexer.peek_token()]
+            print(self.stack[-1] + ' -> ' +
+                  ('\'\'' if expression == '' else expression))
             self.stack.pop()
             for x in expression[::-1]:
                 self.stack.append(x)
@@ -205,6 +215,7 @@ class LLParser:
     def parse(self):
         while self.stack[-1] != '$':
             self._parse()
+
 
 if __name__ == '__main__':
     expression = "(1 + 2) + 2.5"
