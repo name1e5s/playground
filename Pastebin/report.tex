@@ -1,6 +1,15 @@
 % Koko
 \documentclass[ichigo,normal,cn]{elegantnote}
-\usepackage{tikz}
+\usepackage{titling}
+
+\pretitle{%
+  \begin{center}
+  \includegraphics[width=2cm]{rust.jpg}
+  \\[\bigskipamount]
+  \color{ecolor}
+  \LARGE\bfseries
+}
+\posttitle{\end{center}}
 \definecolor{light-gray}{gray}{0.95}
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 \newfontfamily\courier{Courier New}
@@ -34,9 +43,9 @@ Pastebin.rs 设计文档}
 \section{概览}
 
 \subsection{设计需求}
-设计一个代码存储网站，可以支持用户创建新代码片段、查看他人创建的代码片段。
+设计一个代码存储网站，可以支持用户创建新代码片段(Paste)、查看他人创建的代码片段。
 
-除此之外，改网站还应包含如下功能：
+除此之外，该网站还包含如下功能：
 \begin{itemize}
     \item 提供基本的代码高亮功能，方便用户查看代码
     \item 允许用户匿名创建新片段，对于未登录用户来说只能创建匿名代码片段
@@ -45,7 +54,7 @@ Pastebin.rs 设计文档}
 
 \subsection{编程环境}
 
-操作系统： KUbuntu 19.10
+操作系统： Kubuntu 19.10
 
 编程语言：Rust
 
@@ -245,25 +254,94 @@ pub enum APIResponse<T, E> {
 
 \section{实现}
 
-我们使用 \code{Rust} 进行了整改服务器部分的实现。
+我们使用 \code{Rust} 进行了整个服务器部分的实现。
 
-\subsection{异步化}
-我们使用了 Rust 官方开发的 \code{tide} 库作为我们核心库。\code{tide} 是对 \code{HTTP} 库的一个异步化的简单封装。作为官方实现的库，其对最近加入 Rust 的 \code{async/await} 语法有着很好的支持。得益于此，我们的程序在设计之初就考虑了如何异步化，最总达成了一个很好的\code{异步化}服务器。
+\subsection{异步}
+我们的项目以 Rust 官方开发的 \code{tide} 库作为核心框架。\code{tide} 的底层使用异步化的 HTTP 库 \code{hyper} 提供服务，可以方便地将任何一个返回类型为 \\ \code{Future<Output = impl IntoResponse>} 的异步函数转化为服务。作为官方实现的库，其对最近加入 Rust 的 \code{async/await} 语法有着很好的支持。受益于此，我们的项目在设计之初就很好地考虑了如何处理异步逻辑，并设计了良好的基础设施以支持异步化的实现。
 
 \subsection{线程池}
-Rust 的 \code{async} 函数最终的返回值是一个带有 \code{Future} Trait 的对象，为了让这个对象能够执行我们需要一个执行者来进行这一操作。我们最终使用 \code{async-std} 作为我们的执行者。
+Rust 的 \code{async} 函数最终的返回值是一个带有 \code{Future} Trait 的对象。在当前的 Rust 实现我们需要一个标准库外的 \code{Executor} 来运行异步函数，在 Rust 下面比较常用的 \code{Executor} 实现为 \code{tokio} 以及 \code{async-std}，我们选用后者作为我们的 \code{Executor}。
 
-\code{async-std} 的底层实现其实是一个带有任务窃取的线程池搭配 \code{epoll} 操作实现的高效轮询，以此很好地实现了线程的复用以及任务的调度。
+\code{async-std} 的底层实现是一个带有任务窃取的线程池搭配 \code{epoll} 操作实现的轮询，以此很好地实现了线程的复用以及任务的高效调度。
 
 \subsection{连接池}
-我们使用 \code{r2d2} 提供的通用连接池实现了一个支持泛型的连接池，该连接池可以方便地跨线程共享，还支持将查询操作异步化，大幅提升了服务器的效率。
+\code{r2d2} 为我们提供了一个通用的数据库连接池，该连接池可以方便地跨线程共享。我们以此为基础，使用 \code{async-std::task::block} 构建了一个可以使用该连接池异步执行任意闭包的结构。
 
 \subsection{错误处理}
 我们构造了统一的 \code{Error} 结构来处理我们的全部错误。
 
+\subsection{宏}
+Rust 提供了一套很好的宏机制，我们与 UUID 相关的类都是使用同一套宏生成的。使用宏可以帮助我们高效地重用代码，我们的宏的代码如下：
+
+\begin{lstlisting}
+macro_rules! uuid_wrapper {
+    ($name: ident) => {
+        #[derive(Debug, Hash, PartialEq, Eq, PartialOrd, Ord, Clone, Copy, FromSqlRow, AsExpression)]
+        #[sql_type = "diesel::pg::types::sql_types::Uuid"]
+        pub struct $name(pub uuid::Uuid);
+
+        impl From<uuid::Uuid> for $name {
+            fn from(id: uuid::Uuid) -> Self {
+                $name(id)
+            }
+        }
+
+        impl std::ops::Deref for $name {
+            type Target = uuid::Uuid;
+
+            fn deref(&self) -> &Self::Target {
+                &self.0
+            }
+        }
+
+        impl serde::Serialize for $name {
+            fn serialize<S>(&self ,serializer: S) -> std::result::Result<S::Ok, S::Error>
+                where
+                    S: serde::Serializer {
+                    self.0.to_simple().to_string().serialize(serializer)
+                }
+        }
+
+        impl<'de> serde::Deserialize<'de> for $name {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+                where D: serde::Deserializer<'de> {
+                uuid::Uuid::deserialize(deserializer).map($name)
+            }
+        }
+
+        impl diesel::serialize::ToSql<diesel::sql_types::Uuid, diesel::pg::Pg> for $name {
+            fn to_sql<W: std::io::Write>(&self, out: &mut diesel::serialize::Output<W, diesel::pg::Pg>) -> diesel::serialize::Result {
+                <uuid::Uuid as diesel::serialize::ToSql<diesel::sql_types::Uuid, diesel::pg::Pg>>::to_sql(&self.0, out)
+            }
+        }
+
+        impl<A> diesel::deserialize::FromSql<A, diesel::pg::Pg> for $name {
+            fn from_sql(bytes: Option<&[u8]>) -> diesel::deserialize::Result<Self> {
+                uuid::Uuid::from_sql(bytes).map($name)
+            }
+        }
+
+          impl std::fmt::Display for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                write!(f, "{}", self.0.to_simple())
+            }
+          }
+
+        impl $name {
+            #[allow(unused)]
+            pub fn into_uuid(self) -> uuid::Uuid {
+                self.0
+            }
+        }
+    };
+}
+\end{lstlisting}
+
+之后我们只需要 \code{uuid\_wrapper!(Class)} 就可以定义出一个在数据库内表示为 UUID 的类型了。
+
 \section{运行效果}
 
-我们将该程序部署到了我们的阿里云服务器上面，网址为 \code{http://name1e5s.fun:8888/}，主界面效果如：
+我们将该程序部署到了我们的阿里云服务器上面，网址为 \code{http://name1e5s.fun:8888/}，主界面效果如图~\ref{fig:main}~。
 
 \begin{figure}[!htbp]
     \centering
@@ -272,16 +350,16 @@ Rust 的 \code{async} 函数最终的返回值是一个带有 \code{Future} Trai
     \label{fig:main}
 \end{figure}
 
-点击左上角登录即可进入登录界面。
+点击左上角登录即可进入登录界面，如图~\ref{fig:login}~。
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.8\textwidth]{login}
+    \includegraphics[width=.5\textwidth]{login}
     \caption{登录界面}
     \label{fig:login}
 \end{figure}
 
-点击下方的提交按钮即可提交代码，提交后会直接跳转到对应代码的展示界面。点击右上角的用户名，可以进入用户对应的代码片段的展示列表。
+点击下方的提交按钮即可提交代码，提交后会直接跳转到对应代码的展示界面。点击右上角的用户名，可以进入用户对应的代码片段的展示列表，如图~\ref{fig:user}~。
 
 \begin{figure}[!htbp]
     \centering
@@ -290,7 +368,7 @@ Rust 的 \code{async} 函数最终的返回值是一个带有 \code{Future} Trai
     \label{fig:user}
 \end{figure}
 
-在列表内点击任一 UUID，即可进入该代码片段对应的展示界面。
+在列表内点击任一 UUID，即可进入该代码片段对应的展示界面，如图~\ref{fig:paste}~。
 
 \begin{figure}[!htbp]
     \centering
@@ -299,17 +377,17 @@ Rust 的 \code{async} 函数最终的返回值是一个带有 \code{Future} Trai
     \label{fig:paste}
 \end{figure}
 
-点击右上角的 Share，弹出分享窗口，可以在这里复制连接或者获取二维码以供分享。
+点击右上角的 Share，弹出分享窗口，可以在这里复制连接或者获取二维码以供分享，如图~\ref{fig:share}~。
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.8\textwidth]{main}
+    \includegraphics[width=.5\textwidth]{share}
     \caption{分享界面}
     \label{fig:share}
 \end{figure}
-
+\newpage
 \section{总结与心得}
-本次作业中的需求其实来自个人的亲身经历，有很多时候我都需要将一份代码从装了 Linux 的电脑上转移手机上继续查看或者和别人讨论如何修改，但是没有任何一个应用能提供给我比较合适的体验，作为 Ubuntu Pastebin 也只能是把代码复制出去，然后我去在手机上一个个的输入 BASE 62 后的字符串访问地址，因此我就需要一个能够咸宁市二维码的 Pastebin 方便我进行代码的交换，最好性能还不差。因此我就选择了使用 Rust 去实现一个带有二维码的 Pastebin 来作为程序设计实践课程的作业主题。
+本次作业中的需求其实来自个人的亲身经历，有很多时候我都需要将一份代码从装了 Linux 的电脑上转移手机上继续查看或者和别人讨论如何修改，但是没有任何一个应用能提供给我比较合适的体验，作为 Ubuntu Pastebin 也只能是把代码复制出去，然后我去在手机上一个个的输入 BASE 62 后的字符串访问地址，因此我就需要一个能够显示二维码的 Pastebin 方便我进行代码交换，最好性能还不差。因此我就选择了使用 Rust 去实现一个带有二维码的 Pastebin 来作为程序设计实践课程的作业主题。
 这次作业是我第一次使用 Rust 实现有规模的程序，也是第一次完成后端程序的设计。在这次程序设计实践的大作业中我有很多时间都花费在了查找文档以及了解相关知识上。因为对前端的知识一窍不通，所以花了很长时间在如何实现出一个能用的网页上面，很惭愧。不过好在最后实现的程序效果比较完美，也算是比较开心吧。
 
 
