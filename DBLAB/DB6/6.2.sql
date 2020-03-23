@@ -11,7 +11,7 @@ BEGIN
     WHERE 部门ID号 = @id))
     BEGIN
         ROLLBACK;
-        PRINT 'FUCK';
+        PRINT '部门 ID 不存在';
         RETURN;
     END
 END
@@ -54,10 +54,7 @@ FOR INSERT
 AS
 BEGIN
     UPDATE [dbo].[student]
-    SET 学生ID号 =  'g' + CAST
-((RIGHT
-(学生ID号,7) + 1) as nchar
-(7))
+    SET 学生ID号 =  'g' + FORMAT((RIGHT(学生ID号,7) + 1), d7)
 END
 
 -- TESt 
