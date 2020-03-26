@@ -1,0 +1,98 @@
+% Koko
+\documentclass[blue,normal,cn]{elegantnote}
+\usepackage{array}
+\usepackage{courier}
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\newfontfamily\courier{Courier New}
+\lstset{linewidth=1.1\textwidth,
+	numbers=left,
+	basicstyle=\small\courier,
+	numberstyle=\tiny\courier,
+	keywordstyle=\color{blue}\courier,
+	commentstyle=\it\color[cmyk]{1,0,1,0}\courier, 
+	stringstyle=\it\color[RGB]{128,0,0}\courier,
+	frame=single,
+	backgroundcolor=\color[RGB]{245,245,244},
+	breaklines,
+	extendedchars=false, 
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+	tabsize=4, 
+	showspaces=false
+	basicstyle=\small\courier
+}
+\title{作业1： 理解自己设备的 IPv6 地址 }
+\version{$\aleph$}
+\date{\today}
+
+\begin{document}
+\author{
+	\begin{tabular}[t]{c}
+		于海鑫     \\
+		2017211240 \\
+		\emph{name1e5s@bupt.edu.cn}
+	\end{tabular}
+}
+\maketitle
+
+\section{作业要求}
+
+理解自己的计算机获得的 IPv6 地址。
+
+\begin{enumerate}
+	\item 使用手机热点（AP）的方式，将自己的电脑连接到手机的热点（AP）上（在校同学可连接到校园网）
+	\item Windows 操作系统的同学，在命令行模式下，用 \code{ipconfig /all} 命令，列出自己电脑所有的网络连接；其他操作系统的同学，在控制台执行相应的命令
+	\item 在所有的网络连接里面，找到正在使用的这个连接（连接到手机 AP 的连接，通常是某个 wireless 的网络适配器）
+	\item 记录下来获得的 ipv6 地址，对每个 ipv6 地址，分析理解其前缀，并查找自己设备的可汇聚全球单播地址是归属那个运营商的（参考同时发布的图片或到网上查找）
+\end{enumerate}
+
+\section{作业内容}
+
+\subsection{获取到的 IPv6 地址}
+
+结果如下：
+
+\begin{lstlisting}
+无线局域网适配器 WLAN:
+
+   连接特定的 DNS 后缀 . . . . . . . :
+   描述. . . . . . . . . . . . . . . : Realtek RTL8822BE 802.11ac PCIe Adapter
+   物理地址. . . . . . . . . . . . . : F8-DA-0C-59-9F-81
+   DHCP 已启用 . . . . . . . . . . . : 是
+   自动配置已启用. . . . . . . . . . : 是
+   IPv6 地址 . . . . . . . . . . . . : 2408:8234:3610:6637:d9d5:92bb:cee9:85dc(首选)
+   临时 IPv6 地址. . . . . . . . . . : 2408:8234:3610:6637:cf:b481:c656:7e3(首选)
+   本地链接 IPv6 地址. . . . . . . . : fe80::d9d5:92bb:cee9:85dc%8(首选)
+   IPv4 地址 . . . . . . . . . . . . : 192.168.1.4(首选)
+   子网掩码  . . . . . . . . . . . . : 255.255.255.0
+   获得租约的时间  . . . . . . . . . : 2020年3月26日 13:12:23
+   租约过期的时间  . . . . . . . . . : 2020年3月27日 13:12:23
+   默认网关. . . . . . . . . . . . . : fe80::1%8
+                                       192.168.1.1
+   DHCP 服务器 . . . . . . . . . . . : 192.168.1.1
+   DHCPv6 IAID . . . . . . . . . . . : 100194828
+   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-24-8B-BE-B1-3C-52-82-DF-B1-FD
+   DNS 服务器  . . . . . . . . . . . : fe80::1%8
+                                       192.168.1.1
+   TCPIP 上的 NetBIOS  . . . . . . . : 已启用
+\end{lstlisting}
+
+\subsection{地址分析}
+
+\subsubsection{2408:8234:3610:6637:d9d5:92bb:cee9:85dc}
+
+\begin{itemize}
+	\item \textbf{地址类型}\quad 全局单播
+	\item \textbf{前缀}\quad  2408:8234::/32
+	\item \textbf{归属}\quad 吉林省联通公众宽带
+\end{itemize}
+
+\subsubsection{fe80::d9d5:92bb:cee9:85dc}
+
+\begin{itemize}
+	\item \textbf{地址类型}\quad 链路本地地址
+	\item \textbf{前缀}\quad  fe80::/10
+\end{itemize}
+
+\end{document}
