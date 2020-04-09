@@ -109,7 +109,14 @@ static void list_node(const char *prefix, const char *file_name) {
         printf ("%s %8ld %s %s\n", mode_text, stat_size, stat_time_str, file_name);
     }
     
-    if(S_ISDIR(stat_mode) && recursive_flag) {
+	int dame_flag = 0;
+	size_t file_name_len = strlen(file_name);
+	if((file_name[0] == '.' && file_name_len == 1) ||
+	   (file_name[0] == '.' && file_name[1] == '.' && file_name_len == 2)) {
+		dame_flag = 1;
+	}
+	
+    if(S_ISDIR(stat_mode) && recursive_flag && !dame_flag) {
         list_t tmp = malloc(sizeof(list_node_t));
         tmp->node = node_name;
         tmp->next = NULL;

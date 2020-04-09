@@ -1,0 +1,291 @@
+% Koko
+\documentclass[blue,normal,cn]{elegantnote}
+\usepackage{array}
+\usepackage{courier}
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\newfontfamily\courier{Courier New}
+\lstset{linewidth=1.1\textwidth,
+	numbers=left,
+	basicstyle=\small\courier,
+	numberstyle=\tiny\courier,
+	keywordstyle=\color{blue}\courier,
+	commentstyle=\it\color[cmyk]{1,0,1,0}\courier, 
+	stringstyle=\it\color[RGB]{128,0,0}\courier,
+	frame=single,
+	backgroundcolor=\color[RGB]{245,245,244},
+	breaklines,
+	extendedchars=false, 
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+	tabsize=4, 
+	showspaces=false
+	basicstyle=\small\courier
+}
+\title{上机作业2：遍历目录}
+\version{$\aleph$}
+\date{\today}
+
+\begin{document}
+\author{
+	\begin{tabular}[t]{c}
+		088于海鑫  \\
+		2017211240 \\
+		\emph{name1e5s@bupt.edu.cn}
+	\end{tabular}
+}
+\maketitle
+
+\section{作业要求}
+
+编程实现程序 \code{list.c}，列表普通磁盘文件，包括文件名和文件大小。
+
+\begin{enumerate}
+	\item 使用 \code{vi} 编辑文件，熟悉工具 \code{vi}
+	\item 使用 Linux 的系统调用和库函数
+	\item 体会命令对选项的处理方式
+\end{enumerate}
+
+对选项的处理，自行编程逐个分析命令行参数。不考虑多选项挤在一个命令行
+参数内的情况。
+
+\section{作业实现}
+
+\subsection{获取选项}
+
+因为在这次作业中，使用 \code{getopt} 是不被允许的，因此我们
+首先需要一个用于处理选项的函数。在我们的实现中，我们决定基于
+C 标准库函数 \code{strchr} 模拟实现一个 \code{getopt} 以
+支持我们的选项分析。核心代码如下：
+
+\begin{lstlisting}[language=C]
+    optdecl = strchr(optstring, optchar);
+    if (optdecl) {
+        if (optdecl[1] == ':') {
+            optarg = ++optcursor;
+            if (*optarg == '\0') {
+                if (++optind < argc) {
+                    optarg = argv[optind];
+                } else {
+                    optarg = NULL;
+                    optchar = (optstring[0] == ':') ? ':' : '?';
+                }
+            }
+            optcursor = NULL;
+        }
+    } else {
+        optchar = '?';
+    }
+\end{lstlisting}
+
+\subsection{输出单个文件}
+在输出单个文件时，我们使用 \code{stat} 函数来获取单个文件的状态信息，之后根据这些状态信息打印出文件。核心代码如下：
+
+\begin{lstlisting}[language=C]
+static void list_node(const char *prefix, const char *file_name) {
+	// 一些拼接代码
+
+    struct stat status;
+    if(stat(node_name, &status)) {
+        fprintf(stderr, "%s - Can't access \"%s\": %s\n", elf_name, node_name, strerror(errno));
+        return;
+    }
+
+    mode_t stat_mode = status.st_mode;
+    off_t stat_size = status.st_size;
+	time_t stat_mtime = status.st_mtime;
+	
+    // 一些格式化代码...
+
+    int filter_flag = (!modify_time || time (NULL) - stat_mtime <= modify_time) &&
+        (!lo_size || stat_size >= lo_size) &&
+        (!hi_size || stat_size <= hi_size);
+    if((filter_flag && !S_ISDIR(stat_mode)) || (S_ISDIR(stat_mode) && recursive_flag)) {
+        char stat_time_str[64];
+        strftime(stat_time_str, 64, 
+            "%Y-%m-%d %H:%M", localtime(&stat_mtime));
+        printf ("%s %8ld %s %s\n", mode_text, stat_size, stat_time_str, file_name);
+    }
+	
+	// 一些收尾代码
+}
+\end{lstlisting}
+
+\subsection{输出文件夹下的全部文件}
+
+基于上面输出单个文件的代码，我们可以实现输出某文件夹下全部文件的
+函数。其核心在于对 \code{readdir} 函数的使用。代码如下：
+
+\begin{lstlisting}[language=C]
+static void list_dir(const char *name) {
+    if(!init) {
+        printf("\n");
+    }
+    init = 0;
+
+    DIR *dir = opendir (name);
+    if (dir == NULL) {
+            fprintf(stderr, "%s - Can't access dir \"%s\": %s\n", elf_name, name, strerror(errno));
+            return;
+        }
+
+    printf("%s:\n", name);
+
+    struct dirent *entry;
+    int count = 0;
+    while ((entry = readdir(dir)) != NULL) {
+        const char *entry_name = entry->d_name;
+        if(!all_flag && entry_name[0] == '.')
+            continue;
+        
+        list_node(name, entry_name);
+        count++;
+    }
+    printf("%d files in total.\n", count);
+}
+\end{lstlisting}
+
+\subsection{递归输出}
+有时我们需要实现对于某文件夹的递归输出，此时我们使用广度优先搜索的方式，使用一个链表模拟的队列进行文件夹的递归输出。核心代码如下：
+
+\begin{lstlisting}[language=C]
+static void list_main(const char *name) {
+    struct stat status;
+    if(stat(name, &status)) {
+        fprintf(stderr, "%s - Can't access \"%s\": %s\n", elf_name, name, strerror(errno));
+        return;
+    }
+    if(S_ISDIR(status.st_mode)) {
+        list_start = malloc(sizeof(list_node_t));
+        list_start->node = name;
+        list_start->next = NULL;
+        list_end = list_start;
+        while (list_start) {
+            list_dir(list_start->node);
+            list_start = list_start->next;
+        }
+    } else {
+        list_node("", name);
+    }
+}
+\end{lstlisting}
+
+\section{运行效果}
+
+\subsection{基本使用}
+输出某一文件夹的内容时结果如下：
+
+\begin{lstlisting}
+name1e5s@sumeru:~/Homework-2/build$ ./list ..
+..:
+-rw-rw-r--     1719 2020-04-09 17:31 getopt.c
+-rw-rw-r--     5141 2020-04-09 17:31 list.c
+-rw-rw-r--      123 2020-04-09 17:31 CMakeLists.txt
+-rw-rw-r--      559 2020-04-09 17:31 homemade_getopt.h
+5 files in total.
+\end{lstlisting}
+
+\subsection{递归输出}
+递归输出某一文件夹的内容时结果如下：
+
+\begin{lstlisting}
+name1e5s@sumeru:~/Homework-2/build$ ./list ..
+..:
+-rw-rw-r--     1719 2020-04-09 17:31 getopt.c
+-rw-rw-r--     5141 2020-04-09 17:31 list.c
+-rw-rw-r--      123 2020-04-09 17:31 CMakeLists.txt
+-rw-rw-r--      559 2020-04-09 17:31 homemade_getopt.h
+5 files in total.
+name1e5s@sumeru:~/Homework-2/build$ ./list -r ..
+..:
+-rw-rw-r--     1719 2020-04-09 17:31 getopt.c
+-rw-rw-r--     5141 2020-04-09 17:31 list.c
+-rw-rw-r--      123 2020-04-09 17:31 CMakeLists.txt
+-rw-rw-r--      559 2020-04-09 17:31 homemade_getopt.h
+drwxrwxr-x     4096 2020-04-09 17:31 build
+5 files in total.
+
+../build:
+-rw-rw-r--     1502 2020-04-09 17:31 cmake_install.cmake
+-rwxrwxr-x    13832 2020-04-09 17:31 list
+drwxrwxr-x     4096 2020-04-09 17:31 CMakeFiles
+-rw-rw-r--     5304 2020-04-09 17:31 Makefile
+-rw-rw-r--    12576 2020-04-09 17:31 CMakeCache.txt
+5 files in total.
+
+../build/CMakeFiles:
+-rw-rw-r--     3067 2020-04-09 17:31 Makefile2
+-rw-rw-r--       85 2020-04-09 17:31 cmake.check_cache
+-rwxrwxr-x    12312 2020-04-09 17:31 feature_tests.bin
+drwxrwxr-x     4096 2020-04-09 17:31 list.dir
+drwxrwxr-x     4096 2020-04-09 17:31 CMakeTmp
+-rw-rw-r--      688 2020-04-09 17:31 feature_tests.c
+drwxrwxr-x     4096 2020-04-09 17:31 3.10.2
+-rw-rw-r--        2 2020-04-09 17:31 progress.marks
+-rw-rw-r--    44929 2020-04-09 17:31 CMakeOutput.log
+-rw-rw-r--      632 2020-04-09 17:31 CMakeDirectoryInformation.cmake
+-rw-rw-r--    10011 2020-04-09 17:31 feature_tests.cxx
+-rw-rw-r--     6639 2020-04-09 17:31 Makefile.cmake
+-rw-rw-r--      171 2020-04-09 17:31 TargetDirectories.txt
+13 files in total.
+
+../build/CMakeFiles/list.dir:
+-rw-rw-r--      524 2020-04-09 17:31 C.includecache
+-rw-rw-r--      261 2020-04-09 17:31 cmake_clean.cmake
+-rw-rw-r--       94 2020-04-09 17:31 link.txt
+-rw-rw-r--     3136 2020-04-09 17:31 getopt.c.o
+-rw-rw-r--      290 2020-04-09 17:31 depend.make
+-rw-rw-r--      320 2020-04-09 17:31 depend.internal
+-rw-rw-r--      171 2020-04-09 17:31 flags.make
+-rw-rw-r--     7424 2020-04-09 17:31 list.c.o
+-rw-rw-r--     5633 2020-04-09 17:31 build.make
+-rw-rw-r--       64 2020-04-09 17:31 progress.make
+-rw-rw-r--      657 2020-04-09 17:31 DependInfo.cmake
+11 files in total.
+
+../build/CMakeFiles/CMakeTmp:
+0 files in total.
+
+../build/CMakeFiles/3.10.2:
+-rw-r--r--      402 2020-04-09 17:31 CMakeSystem.cmake
+-rwxrwxr-x     8248 2020-04-09 17:31 CMakeDetermineCompilerABI_C.bin
+-rw-r--r--     4849 2020-04-09 17:31 CMakeCXXCompiler.cmake
+drwxrwxr-x     4096 2020-04-09 17:31 CompilerIdC
+-rwxrwxr-x     8264 2020-04-09 17:31 CMakeDetermineCompilerABI_CXX.bin
+drwxrwxr-x     4096 2020-04-09 17:31 CompilerIdCXX
+-rw-r--r--     2219 2020-04-09 17:31 CMakeCCompiler.cmake
+7 files in total.
+
+../build/CMakeFiles/3.10.2/CompilerIdC:
+-rwxrwxr-x     8408 2020-04-09 17:31 a.out
+drwxrwxr-x     4096 2020-04-09 17:31 tmp
+-rw-rw-r--    18076 2020-04-09 17:31 CMakeCCompilerId.c
+3 files in total.
+
+../build/CMakeFiles/3.10.2/CompilerIdCXX:
+-rw-rw-r--    17631 2020-04-09 17:31 CMakeCXXCompilerId.cpp
+-rwxrwxr-x     8416 2020-04-09 17:31 a.out
+drwxrwxr-x     4096 2020-04-09 17:31 tmp
+3 files in total.
+
+../build/CMakeFiles/3.10.2/CompilerIdC/tmp:
+0 files in total.
+
+../build/CMakeFiles/3.10.2/CompilerIdCXX/tmp:
+0 files in total.
+\end{lstlisting}
+
+\subsection{添加限制}
+有限制的输出某一文件夹的内容时结果如下：
+
+\begin{lstlisting}
+name1e5s@sumeru:~/Homework-2/build$  ./list -l 5000 -m 2 .
+.:
+-rwxrwxr-x    13832 2020-04-09 17:31 list
+-rw-rw-r--     5304 2020-04-09 17:31 Makefile
+-rw-rw-r--    12576 2020-04-09 17:31 CMakeCache.txt
+5 files in total.
+
+\end{lstlisting}
+
+\end{document}

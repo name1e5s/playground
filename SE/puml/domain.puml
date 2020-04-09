@@ -1,0 +1,56 @@
+@startuml 领域模型
+
+object "分布式温控计费系统" as system
+
+object "从控端" as client
+
+' 从控端的领域模型
+object "访客" as user
+object "从控端界面" as client_interface
+
+client -- user
+(user, client) . client_interface
+
+' 主控端的领域模型
+object "主控端" as server
+
+' 人员
+together {
+    object "财务人员" as financial
+    object "前台人员" as front
+    object "维护人员" as maintaince
+}
+object "系统管理人员" as admin
+'主控端信息
+object "报表" as report
+object "住户身份" as idenity
+object "日志" as log
+object "配置信息" as config
+
+' 关系
+admin ^-- financial
+admin ^-- front
+admin ^-- maintaince
+
+server -- financial
+server -- front
+server -- maintaince
+
+server -- admin
+
+(server, financial) . report
+(server, front) . idenity
+(server, maintaince) . log
+(server, admin) . config
+
+' 主控与从控的交互
+object "空调信息" as acdc_info
+
+server -left- client
+
+(server, client) . acdc_info
+
+' fin
+system *-- server
+system *-- client
+@enduml

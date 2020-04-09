@@ -1,0 +1,29 @@
+@startuml UserAction
+
+start
+
+:用户登记入住酒店;
+
+if (用户是否注册过账户) then (是)
+    :登录账户;
+else (否)
+    :注册账户并登录;
+endif
+
+:用户进入房间;
+:用户将空调与其账户绑定;
+
+repeat
+fork
+    :打开空调;
+fork again
+    :关闭空调;
+fork again
+    :查看计费;
+endfork
+repeat while (用户退房)
+
+:用户结账并离开;
+
+end
+@enduml
