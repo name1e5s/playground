@@ -102,7 +102,7 @@ static void list_node(const char *prefix, const char *file_name) {
     int filter_flag = (!modify_time || time (NULL) - stat_mtime <= modify_time) &&
         (!lo_size || stat_size >= lo_size) &&
         (!hi_size || stat_size <= hi_size);
-    if((filter_flag && !S_ISDIR(stat_mode)) || (S_ISDIR(stat_mode) && recursive_flag)) {
+    if(filter_flag || S_ISDIR(stat_mode)) {
         char stat_time_str[64];
         strftime(stat_time_str, 64, 
             "%Y-%m-%d %H:%M", localtime(&stat_mtime));
