@@ -1,5 +1,5 @@
 % Koko
-\documentclass[blue,normal,cn]{elegantnote}
+\documentclass[black,normal,cn]{elegantnote}
 \usepackage{array}
 \usepackage{courier}
 \usepackage{xcolor}
@@ -69,13 +69,13 @@
 \begin{center}
     \begin{tabular}{cc}
         \toprule
-        \textbf{组员} & \textbf{分工}        \\
+        \textbf{组员} & \textbf{分工}                        \\
         \midrule
-        于海鑫        & 整合用例模型         \\
-        郭朝宇        & 负责入住客户用例模型 \\
-        赵泉斌        & 负责前台人员用例模型 \\
-        郭璐          & 负责维护人员用例模型 \\
-        徐翔          & 负责财务人员用例模型 \\
+        于海鑫        & 整合用例模型                         \\
+        郭朝宇        & 负责入住客户用例模型                 \\
+        赵泉斌        & 负责前台人员用例模型                 \\
+        郭璐          & 负责维护人员用例模型                 \\
+        徐翔          & 负责财务人员用例模型以及公有用例模型 \\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -95,7 +95,7 @@
     \end{tabular}
 \end{center}
 
-\section{用例定义}
+\section{用例定义：公有用例}
 
 \subsection{注册账号}
 \subsubsection{用例图}
@@ -208,47 +208,6 @@
     \end{tabular}
 \end{center}
 
-\subsection{查看统计报表}
-\subsubsection{用例图}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.5\textwidth]{fig/276001.png}
-    \caption{用例图：查看统计报表}
-    \label{fig:276001}
-\end{figure}
-
-\subsubsection{系统顺序图}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.8\textwidth]{fig/276002.png}
-    \caption{系统顺序图：查看统计报表}
-    \label{fig:276002}
-\end{figure}
-
-\subsubsection{操作契约}
-
-\begin{center}
-    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
-        \hline
-        系统事件                  & \multicolumn{1}{l|}{\code{show\_report(time\_start, time\_end)}} \\
-        \hline
-        交叉引用                  & 查看统计报表                                                     \\
-        \hline
-        前置条件                  & 财务人员登入财务系统，要求查看报表                               \\
-        \hline
-        \multirow{4}{*}{后置条件} & 一个新的（概念类）统计报表被创建                                 \\
-        \cline{2-2}
-                                  & 统计报表与财务人员建立关联                                       \\
-        \cline{2-2}
-                                  & 统计报表与温控计费系统建立关联                                   \\
-        \cline{2-2}
-                                  & 统计报表的属性初始化：报表编号，开始时间，结束时间，费用等       \\
-        \hline
-    \end{tabular}
-\end{center}
-
 \subsection{生成使用账单}
 \subsubsection{用例图}
 
@@ -307,5 +266,351 @@
         \hline
     \end{tabular}
 \end{center}
+
+\section{用例定义：入住客户用例}
+
+\subsection{用例图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250001.png}
+    \caption{用例图：入住客户用例}
+    \label{fig:276001}
+\end{figure}
+
+\subsection{查看空调运行状态}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250003.png}
+    \caption{系统顺序图：查看空调运行状态}
+    \label{fig:250003}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{clientCheckSate(roomID)}} \\
+        \hline
+        交叉引用   & 查看运行状态                                        \\
+        \hline
+        前置条件   & 客户想要查看所在房间空调的状态                      \\
+        \hline
+        {后置条件} & 返回该房间的空调状态给客户                          \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{调节模式}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250004.png}
+    \caption{系统顺序图：调节模式}
+    \label{fig:250004}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件 & \multicolumn{1}{l|}{\code{clientSetMode(roomID, mode)}} \\
+        \hline
+        交叉引用 & 调节模式                                                \\
+        \hline
+        前置条件 & 客户想要调节所在房间空调的模式                          \\
+        \hline
+        \multirow{3}{*}{后置条件}
+                 & 将空调模式设置为指定的 mode 值                          \\
+        \cline{2-2}
+                 & 系统记录下本次操作                                      \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+\subsection{调节风速}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250005.png}
+    \caption{系统顺序图：调节风速}
+    \label{fig:250005}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件 & \multicolumn{1}{l|}{\code{clientSetSpeed(roomID, speed)}} \\
+        \hline
+        交叉引用 & 调节风速                                                  \\
+        \hline
+        前置条件 & 客户想要调节所在房间空调的模式                            \\
+        \hline
+        \multirow{2}{*}{后置条件}
+                 & 将空调模式设置为指定的speed值                             \\
+        \cline{2-2}
+                 & 系统记录下本次操作                                        \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+
+\subsection{调节温度}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250006.png}
+    \caption{系统顺序图：调节温度}
+    \label{fig:250006}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件 & \multicolumn{1}{l|}{\code{clientSetTemperature(roomID, temperature)}} \\
+        \hline
+        交叉引用 & 调节温度                                                              \\
+        \hline
+        前置条件 & 客户想要调节所在房间空调的温度                                        \\
+        \hline
+        \multirow{2}{*}{后置条件}
+                 & 将空调模式设置为指定的 temperature 值                                 \\
+        \cline{2-2}
+                 & 系统记录下本次操作                                                    \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+
+\subsection{开机}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250007.png}
+    \caption{系统顺序图：开机}
+    \label{fig:250007}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{clientTurnOn(roomID)}} \\
+        \hline
+        交叉引用   & 开机                                             \\
+        \hline
+        前置条件   & 空调处在可以被开启的状态且客户想要开启空调       \\
+        \hline
+        {后置条件} & 空调开启                                         \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{关机}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/250008.png}
+    \caption{系统顺序图：关机}
+    \label{fig:250008}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{clientTurnOff(roomID)}} \\
+        \hline
+        交叉引用   & 关机                                              \\
+        \hline
+        前置条件   & 空调处在可以被关闭的状态且客户想要关闭空调        \\
+        \hline
+        {后置条件} & 空调关闭                                          \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{用例定义：前台人员用例}
+
+\subsection{用例图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{fig/268001.png}
+    \caption{用例图：前台人员用例}
+    \label{fig:268001}
+\end{figure}
+
+
+\subsection{办理入住}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/268002.png}
+    \caption{系统顺序图：办理入住}
+    \label{fig:268002}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件 & \multicolumn{1}{l|}{\code{clientCheckIn(name)}} \\
+        \hline
+        交叉引用 & 客户登记                                        \\
+        \hline
+        前置条件 & 前台核实客户身份后,为客户进行登记               \\
+        \hline
+        \multirow{2}{*}{后置条件}
+                 & 客户被分配一个房间, 客户获得该房间使用权        \\
+        \cline{2-2}
+                 & 客户与房间关联、房间属性进行初始化              \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{finishCheckIn()}} \\
+        \hline
+        交叉引用   & 客户登记                                    \\
+        \hline
+        前置条件   & 前台完成客户登记                            \\
+        \hline
+        {后置条件} & 修改房间属性isOccupied                      \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{办理退房}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/268003.png}
+    \caption{系统顺序图：办理退房}
+    \label{fig:268003}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件 & \multicolumn{1}{l|}{\code{clientCheckOut(name, roomID)}} \\
+        \hline
+        交叉引用 & 客户注销                                                 \\
+        \hline
+        前置条件 & 客户已在酒店登记                                         \\
+        \hline
+        \multirow{2}{*}{后置条件}
+                 & 系统生成客户的账单,明细单                                \\
+        \cline{2-2}
+                 & 收回客户对该房间的使用权                                 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{printInfo(bill, detail)}} \\
+        \hline
+        交叉引用   & 客户注销                                            \\
+        \hline
+        前置条件   & 前台完成对客户注销                                  \\
+        \hline
+        {后置条件} & 打印出客户账单和详单,账单和详单属性改为isPrinted    \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件   & \multicolumn{1}{l|}{\code{finishCheckOut() }} \\
+        \hline
+        交叉引用   & 客户注销                                      \\
+        \hline
+        前置条件   & 前台完成对客户注销                            \\
+        \hline
+        {后置条件} & 房间属性修改:isEmpty                          \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{用例定义：维护人员用例}
+
+\section{用例定义：财务人员用例}
+\subsection{查看统计报表}
+\subsubsection{用例图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{fig/276001.png}
+    \caption{用例图：查看统计报表}
+    \label{fig:276001}
+\end{figure}
+
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/276002.png}
+    \caption{系统顺序图：查看统计报表}
+    \label{fig:276002}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件                  & \multicolumn{1}{l|}{\code{show\_report(time\_start, time\_end)}} \\
+        \hline
+        交叉引用                  & 查看统计报表                                                     \\
+        \hline
+        前置条件                  & 财务人员登入财务系统，要求查看报表                               \\
+        \hline
+        \multirow{4}{*}{后置条件} & 一个新的（概念类）统计报表被创建                                 \\
+        \cline{2-2}
+                                  & 统计报表与财务人员建立关联                                       \\
+        \cline{2-2}
+                                  & 统计报表与温控计费系统建立关联                                   \\
+        \cline{2-2}
+                                  & 统计报表的属性初始化：报表编号，开始时间，结束时间，费用等       \\
+        \hline
+    \end{tabular}
+\end{center}
+
 
 \end{document}
