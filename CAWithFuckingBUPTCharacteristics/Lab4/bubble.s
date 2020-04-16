@@ -18,8 +18,7 @@ ADDIU  $r2, $r8, 0
 run:
 LW     $r3, -4($r2)
 LW     $r4, 0($r2)
-SLT    $r5, $r4, $r3
-BEQ    $r5, $r0, end
+BLT    $r4, $r3, end
 swap:
 SW     $r4, -4($r2)
 SW     $r3, 0($r2)

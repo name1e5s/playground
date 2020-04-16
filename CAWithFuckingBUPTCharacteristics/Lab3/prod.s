@@ -3,11 +3,11 @@ main:
 ADDIU  $r4,$r0,a
 ADDIU  $r5,$r0,b
 ADDIU  $r6,$r0,n
-BGEZAL  $r0, naive_prod
+BGEZAL  $r0, prod
 NOP 
 TEQ $r0,$r0
 
-naive_prod:
+prod:
 LW     $r6, 0($r6)
 ADD    $r8, $r0, $r0
 ADD    $r2, $r0, $r0
