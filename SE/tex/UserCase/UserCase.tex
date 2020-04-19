@@ -29,7 +29,7 @@
 	basicstyle=\small\courier
 }
 \title{分布式温控系统用例模型}
-\version{1.0.0}
+\version{1.1.1}
 \date{\zhtoday}
 
 \begin{document}
@@ -40,6 +40,8 @@
     \end{tabular}
 }
 \maketitle
+
+\tableofcontents
 
 \section{文档介绍}
 
@@ -74,7 +76,7 @@
         于海鑫        & 整合用例模型                         \\
         郭朝宇        & 负责入住客户用例模型                 \\
         赵泉斌        & 负责前台人员用例模型                 \\
-        郭璐          & 负责维护人员用例模型                 \\
+        郭璐          & 负责维修人员用例模型                 \\
         徐翔          & 负责财务人员用例模型以及公有用例模型 \\
         \bottomrule
     \end{tabular}
@@ -85,12 +87,12 @@
 \begin{center}
     \begin{tabular}{cc}
         \toprule
-        \textbf{角色名称} & \textbf{角色职责}                                \\
+        \textbf{角色名称} & \textbf{角色职责}                        \\
         \midrule
-        入住客户          & 入住酒店，自助调节空调温度，支付空调费用         \\
-        前台人员          & 协助客户办理入住、退房手续                       \\
-        维护人员          & 监视并控制各房间空调状态，查看各房间空调使用情况 \\
-        财务人员          & 查看温控报表                                     \\
+        入住客户          & 入住酒店，自助调节空调状态，支付空调费用 \\
+        前台人员          & 协助客户办理入住、退房手续               \\
+        维修人员          & 监控各房间空调状态，负责空调总机的开关机 \\
+        财务人员          & 查看温控报表                             \\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -129,7 +131,7 @@
         \hline
         \multirow{4}{*}{后置条件} & 一个新的（概念类）账号被创建                                     \\
         \cline{2-2}
-                                  & 账号与操作者（客户、前台人员、维护人员、财务人员）建立关联       \\
+                                  & 账号与操作者（客户、前台人员、维修人员、财务人员）建立关联       \\
         \cline{2-2}
                                   & 账号与温控计费系统建立关联                                       \\
         \cline{2-2}
@@ -568,25 +570,96 @@
     \end{tabular}
 \end{center}
 
-\section{用例定义：维护人员用例}
+\section{用例定义：维修人员用例}
 
-\section{用例定义：财务人员用例}
-\subsection{查看统计报表}
-\subsubsection{用例图}
+\subsection{用例图}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.5\textwidth]{fig/276001.png}
-    \caption{用例图：查看统计报表}
-    \label{fig:276001}
+    \includegraphics[width=.9\textwidth]{fig/260007.png}
+    \caption{用例图：控制空调状态}
+    \label{fig:260001}
 \end{figure}
 
+
+\subsection{控制空调状态}
 \subsubsection{系统顺序图}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.8\textwidth]{fig/276002.png}
-    \caption{系统顺序图：查看统计报表}
+    \includegraphics[width=.8\textwidth]{fig/260006.png}
+    \caption{系统顺序图：控制空调状态}
+    \label{fig:260003}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件                  & \multicolumn{1}{l|}{\code{set(room\_id, con\_id, state)}} \\
+        \hline
+        交叉引用                  & 设置空调其他状态                                          \\
+        \hline
+        前置条件                  & 成功登录酒店管理系统                                      \\
+        \hline
+        \multirow{4}{*}{后置条件} & 接通空调电源                                              \\
+        \cline{2-2}
+                                  & 设置工作模式                                              \\
+        \cline{2-2}
+                                  & 确认各项参数无误                                          \\
+        \cline{2-2}
+                                  & 启动空调                                                  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{监控空调状态}
+\subsubsection{系统顺序图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/260003.png}
+    \caption{系统顺序图：监控空调状态}
+    \label{fig:260003}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件                  & \multicolumn{1}{l|}{\code{manage(room\_id,con\_id,state)}} \\
+        \hline
+        交叉引用                  & 初始化空调状态                                             \\
+        \hline
+        前置条件                  & 成功登录酒店管理系统                                       \\
+        \hline
+        \multirow{2}{*}{后置条件} & 启动监控设备                                               \\
+        \cline{2-2}
+                                  & 从空调获取各个房间的状态信息并显示到监控屏幕               \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{用例定义：财务人员用例}
+
+\subsection{用例图}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/276011.png}
+    \caption{用例图：财务人员用例}
+    \label{fig:276011}
+\end{figure}
+
+\subsection{查看日报}
+
+\subsubsection{系统顺序图}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/276012.png}
+    \caption{系统顺序图：查看日报}
     \label{fig:276002}
 \end{figure}
 
@@ -595,19 +668,52 @@
 \begin{center}
     \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
         \hline
-        系统事件                  & \multicolumn{1}{l|}{\code{show\_report(time\_start, time\_end)}} \\
+        系统事件                  & \multicolumn{1}{l|}{\code{show\_daily(time\_start, time\_end)}}                                                        \\
         \hline
-        交叉引用                  & 查看统计报表                                                     \\
+        交叉引用                  & 查看日报                                                                                                               \\
         \hline
-        前置条件                  & 财务人员登入财务系统，要求查看报表                               \\
+        前置条件                  & 财务人员登入温控计费系统，要求查看日报                                                                                 \\
         \hline
-        \multirow{4}{*}{后置条件} & 一个新的（概念类）统计报表被创建                                 \\
+        \multirow{4}{*}{后置条件} & 一个新的（概念类）日报被创建                                                                                           \\
         \cline{2-2}
-                                  & 统计报表与财务人员建立关联                                       \\
+                                  & 日报与财务人员建立关联                                                                                                 \\
         \cline{2-2}
-                                  & 统计报表与温控计费系统建立关联                                   \\
+                                  & 日报与温控计费系统建立关联                                                                                             \\
         \cline{2-2}
-                                  & 统计报表的属性初始化：报表编号，开始时间，结束时间，费用等       \\
+                                  & 日报的属性初始化：日报编号、房间号、开关次数、调度次数、详单条数、调温次数、调风次数、请求时长、总费用、折线图、饼图等 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+\subsection{查看周报}
+
+\subsubsection{系统顺序图}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{fig/276013.png}
+    \caption{系统顺序图：查看周报}
+    \label{fig:276002}
+\end{figure}
+
+\subsubsection{操作契约}
+
+\begin{center}
+    \begin{tabular}{|>{\centering}m{0.15\textwidth}|m{0.7\textwidth}|}
+        \hline
+        系统事件                  & \multicolumn{1}{l|}{\code{show\_weekly(time\_start, time\_end)}}                                                       \\
+        \hline
+        交叉引用                  & 查看周报                                                                                                               \\
+        \hline
+        前置条件                  & 财务人员登入温控计费系统，要求查看周报                                                                                 \\
+        \hline
+        \multirow{4}{*}{后置条件} & 一个新的（概念类）周报被创建                                                                                           \\
+        \cline{2-2}
+                                  & 周报与财务人员建立关联                                                                                                 \\
+        \cline{2-2}
+                                  & 周报与温控计费系统建立关联                                                                                             \\
+        \cline{2-2}
+                                  & 周报的属性初始化：周报编号、房间号、开关次数、调度次数、详单条数、调温次数、调风次数、请求时长、总费用、折线图、饼图等 \\
         \hline
     \end{tabular}
 \end{center}
