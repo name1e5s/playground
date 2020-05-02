@@ -196,7 +196,7 @@ p=23可以换成p=1到p=126可访问126个页，每页有12个图，每个图的
 cat index.html | sed -e 's/<div class="item">/\n/g' | \
 grep "<div class=\"card progressive\"" | \
 sed -e 's#.*\"mark\" href=\"\(.*\)\".*\"description\"><h3>\(.*\)(©.*\([0-9]\{4\}\-[0-9]\{2\}-[0-9]\{2\}\)<.*#\1$\2$\3#g' \
-	-e 's#home_1#download#g' \
+	-e 's#home_\([0-9]*\)#download#g' \
 	-e 's# $2#$2#g'
 \end{lstlisting}
 
@@ -220,6 +220,8 @@ sed -e 's#.*\"mark\" href=\"\(.*\)\".*\"description\"><h3>\(.*\)(©.*\([0-9]\{4\
 之后就是简单的多线程下载等步骤，全部代码如下：
 
 \begin{lstlisting}[language=bash]
+#!/bin/bash
+
 if [ $# -gt 2 ]
 then
 	echo "Usage: $0 <begin> <end>"
@@ -263,9 +265,8 @@ do
 		sed -e 's/<div class="item">/\n/g' | \
 		grep "<div class=\"card progressive\"" | \
 		sed -e 's#.*\"mark\" href=\"\(.*\)\".*\"description\"><h3>\(.*\)(©.*\([0-9]\{4\}\-[0-9]\{2\}-[0-9]\{2\}\)<.*#\1$\2$\3#g' \
-		 -e 's#home_1#download#g' \
-		 -e 's# $2#$2#g' | \
-		awk -F "[$]" '{ printf("https://bing.ioliu.cn/%s$%s$%s\n", $1, $2, $3)}' > temp/$i.dat
+		 -e 's#home_\([0-9]*\)#download#g' \
+		 -e 's# $2#$2#g' > temp/$i.dat
 	fi
 done
 
@@ -273,7 +274,7 @@ for i in $(seq $START $END)
 do
 	while read line
 	do
- 		eval $(echo "$line" | awk -F "[$]" '{printf("url=%s;name=\"%s\";date=%s",$1,$2,$3)}')
+ 		eval $(echo "$line" | awk -F "[$]" '{printf("url=https://bing.ioliu.cn%s;name=\"%s\";date=%s",$1,$2,$3)}')
 		img="bing/$date $name.jpg"
 		if [ ! -f "$img" ]
  		then

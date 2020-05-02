@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{kim2017smartphone}
+Sung~Deuk Kim, Youngmi Koo, and Yeoheung Yun.
+\newblock A smartphone-based automatic measurement method for colorimetric ph
+  detection using a color adaptation algorithm.
+\newblock {\em Sensors}, 17(7):1604, 2017.
+
+\bibitem{igoe2013characterization}
+Damien Igoe, Alfio Parisi, and Brad Carter.
+\newblock Characterization of a smartphone camera's response to ultraviolet a
+  radiation.
+\newblock {\em Photochemistry and photobiology}, 89(1):215--218, 2013.
+
+\bibitem{igoe2018atmospheric}
+Damien~P Igoe, Alfio~V Parisi, Abdurazaq Amar, Nathan~J Downs, and Joanna
+  Turner.
+\newblock Atmospheric total ozone column evaluation with a smartphone image
+  sensor.
+\newblock {\em International Journal of Remote Sensing}, 39(9):2766--2783,
+  2018.
+
+\bibitem{wilkes2017low}
+Thomas~Charles Wilkes, Tom~David Pering, Andrew John~Samuel McGonigle,
+  Giancarlo Tamburello, and Jon~Raffe Willmott.
+\newblock A low-cost smartphone sensor-based uv camera for volcanic so2
+  emission measurements.
+\newblock {\em Remote Sensing}, 9(1):27, 2017.
+
+\bibitem{minoi2016mobile}
+Jacey-Lynn Minoi, Tin~Tze Chiang, Terrin Lim, Zaharin Yusoff, Abdul Hafiz~Abdul
+  Karim, and Azham Zulharnain.
+\newblock Mobile vision-based automatic counting of bacteria colonies.
+\newblock In {\em 2016 International Conference on Information and
+  Communication Technology (ICICTM)}, pages 41--46. IEEE, 2016.
+
+\end{thebibliography}
