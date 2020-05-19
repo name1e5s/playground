@@ -1,0 +1,58 @@
+@startuml RequestOn
+
+participant c as "c: Customer" order 1
+
+participant cc as "cc: CustomerController" order 2
+
+participant s as "s: Service" order 4
+
+participant db as "dbFacade: DBFacade" order 5
+
+participant m as "m: RequestOnMapper" order 6
+
+participant i as "inWaitRequest" order 7
+
+participant w as "inWaitList: list<Request>" order 8
+
+c -> cc: RequestOn(RoomID, CurrentRoomTemp)
+
+activate cc
+
+alt RequestNumber <= MaxRequsetNumber
+cc -> s: <<create>>
+s -> db: insertRequestOn
+activate db
+db -> db: getMapper
+db -> m: insert(RequestOn)
+activate m
+db <-- m: Return(isOK)
+deactivate m
+s <-- db: Return(isOK)
+deactivate db
+
+cc -> s: update
+activate s
+cc <-- s: Return(OK)
+deactivate s
+c <-- cc: Return(Mode, TargetTemp, FeeRate, Fee)
+
+else else
+
+cc -> i: <<create>>
+cc -> i: Update
+activate i
+cc <-- i: Return(isOK)
+deactivate i
+cc -> w: Add(inWait)
+activate w
+cc <-- w: Return(isOK)
+deactivate w
+
+cc -> cc: save
+c <-- cc: Return(State=.wait)
+
+end
+
+deactivate cc
+
+@enduml

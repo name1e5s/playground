@@ -1,0 +1,69 @@
+@startuml RequestOn
+
+participant c as "c: Customer" order 1
+
+participant cc as "cc: CustomerController" order 2
+
+participant s as "s: Service" order 3
+
+participant room as "room: Room" order 4
+
+participant db as "dbFacade: DBFacade" order 5
+
+participant m as "m: ChangeTargetTempMapper" order 6
+
+participant i as "inWaitRequest" order 7
+
+participant w as "inWaitList: list<Request>" order 8
+
+c -> cc: ChangeTargetTemp(RoomID, TargetRoomTemp)
+
+activate cc
+
+alt hasService
+cc -> s: ChangeTargetTemp(RoomID, TargetTemp)
+activate s
+s -> room: ChangeTargetTemp(TargetTemp)
+activate room
+room -> db: InsertChangeTargetTemp(RoomID, TargetTemp)
+activate db
+db -> db: getMapper
+db -> m: insert(RoomID, TargetTemp)
+activate m
+db <-- m: Return(isOK)
+deactivate m
+room <-- db: Return(isOK)
+deactivate db
+s <-- room: Return(isOK)
+deactivate room
+cc <-- s: Return(OK)
+deactivate s
+c <-- cc: Return(OK)
+
+else in wait
+
+cc -> w:inWait = update(RoomID, TargetTemp)
+activate w
+cc <-- w: Return(isOK)
+deactivate w
+c <-- cc: Return(isOK)
+else else
+
+cc -> i: <<create>>
+cc -> i: Update
+activate i
+cc <-- i: Return(isOK)
+deactivate i
+cc -> w: Add(inWait)
+activate w
+cc <-- w: Return(isOK)
+deactivate w
+
+cc -> cc: save
+c <-- cc: Return(isOK)
+
+end
+
+deactivate cc
+
+@enduml

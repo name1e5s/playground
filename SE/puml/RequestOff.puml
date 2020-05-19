@@ -1,0 +1,43 @@
+@startuml RequestOn
+
+participant c as "c: Customer" order 1
+
+participant cc as "cc: CustomerController" order 2
+
+participant s as "s: Service" order 4
+
+participant room as "room: Room" order 3
+
+participant db as "dbFacade: DBFacade" order 5
+
+participant m as "m: RequestOffMapper" order 6
+
+c -> cc: RequestOff(RoomID)
+
+activate cc
+
+cc -> room: RequestOff()
+activate room
+cc <-- room: Return(isOK)
+deactivate room
+
+cc -> s: update
+activate s
+s -> db: insertRequestOff(RoomID)
+activate db
+db -> db: getMapper
+db -> m: insert(RoomID)
+activate m
+db <-- m: Return(isOK)
+deactivate m
+s <-- db: Return(isOK)
+deactivate db
+
+cc -> s: delete
+deactivate s
+
+c <-- cc: Return(Fee, Duration)
+
+deactivate cc
+
+@enduml

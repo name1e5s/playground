@@ -1,0 +1,22 @@
+@startuml RequestOn
+
+participant c as "c: Customer" order 1
+
+participant cc as "cc: CustomerController" order 2
+
+participant s as "s: Service" order 4
+
+c -> cc: RequestFee(RoomID)
+
+activate cc
+
+cc -> s: GetFee
+activate s
+cc <-- s: Return(Fee)
+deactivate s
+
+c <-- cc: Return(Fee)
+
+deactivate cc
+
+@enduml
