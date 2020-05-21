@@ -14,42 +14,42 @@ participant i as "inWaitRequest" order 7
 
 participant w as "inWaitList: list<Request>" order 8
 
-c -> cc: RequestOn(RoomID, CurrentRoomTemp)
+c -> cc: 1. RequestOn(RoomID, CurrentRoomTemp)
 
 activate cc
 
 alt RequestNumber <= MaxRequsetNumber
-cc -> s: <<create>>
-s -> db: insertRequestOn
+cc -> s: 2. <<create>>
+s -> db: 3. insertRequestOn
 activate db
-db -> db: getMapper
-db -> m: insert(RequestOn)
+db -> db: 4. getMapper
+db -> m: 5. insert(RequestOn)
 activate m
-db <-- m: Return(isOK)
+db <-- m: 6. Return(isOK)
 deactivate m
-s <-- db: Return(isOK)
+s <-- db: 7. Return(isOK)
 deactivate db
 
-cc -> s: update
+cc -> s: 8. update
 activate s
-cc <-- s: Return(OK)
+cc <-- s: 9. Return(OK)
 deactivate s
-c <-- cc: Return(Mode, TargetTemp, FeeRate, Fee)
+c <-- cc: 10. Return(Mode, TargetTemp, FeeRate, Fee)
 
 else else
 
-cc -> i: <<create>>
-cc -> i: Update
+cc -> i: 11. <<create>>
+cc -> i: 12. Update
 activate i
-cc <-- i: Return(isOK)
+cc <-- i: 13. Return(isOK)
 deactivate i
-cc -> w: Add(inWait)
+cc -> w: 14. Add(inWait)
 activate w
-cc <-- w: Return(isOK)
+cc <-- w: 15. Return(isOK)
 deactivate w
 
-cc -> cc: save
-c <-- cc: Return(State=.wait)
+cc -> cc: 16. save
+c <-- cc: 17. Return(State=.wait)
 
 end
 

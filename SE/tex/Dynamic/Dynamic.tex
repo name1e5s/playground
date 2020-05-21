@@ -1,0 +1,102 @@
+% Koko
+\documentclass[black,normal,cn]{elegantnote}
+\usepackage{array}
+\usepackage{courier}
+\usepackage{xcolor}
+\usepackage{tabulary}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{zhnumber}
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\newfontfamily\courier{Courier New}
+\lstset{linewidth=1.1\textwidth,
+	numbers=left,
+	basicstyle=\small\courier,
+	numberstyle=\tiny\courier,
+	keywordstyle=\color{blue}\courier,
+	commentstyle=\it\color[cmyk]{1,0,1,0}\courier, 
+	stringstyle=\it\color[RGB]{128,0,0}\courier,
+	frame=single,
+	backgroundcolor=\color[RGB]{245,245,244},
+	breaklines,
+	extendedchars=false, 
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+	tabsize=4, 
+	showspaces=false
+	basicstyle=\small\courier
+}
+\title{分布式温控系统用例模型}
+\version{1.1.1}
+\date{\zhtoday}
+
+\begin{document}
+\author{
+    \begin{tabular}[t]{c}
+        2017211305 班 E 组 \\
+        于海鑫\ 徐翔\ 赵泉斌\ 郭朝宇\ 郭璐
+    \end{tabular}
+}
+\maketitle
+
+\tableofcontents
+
+\section{文档介绍}
+
+\subsection{文档说明}
+
+该软件采用控制器模式进行动态结构的设计，根据用例划分各用例控制器。
+
+对于作业要求的“系统的交互图设计部分不要求持久化层的对象设计”，我们理解为无需做持久化层的类的设计，但是持久化过程仍需表现出来。
+
+
+\subsection{参考文献}
+
+\begin{itemize}
+    \item 《\emph{软件工程模型与方法}》 肖丁等\ 北京邮电大学出版社
+    \item 《\emph{课程作业\_用例模型\_操作契约 参考答案}》\ 肖丁
+\end{itemize}
+
+\subsection{人员分工}
+
+\begin{center}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{组员} & \textbf{分工}              \\
+        \midrule
+        于海鑫        & 整合动态结构设计、调度策略 \\
+        郭朝宇        & 负责入住客户动态结构设计   \\
+        赵泉斌        & 负责前台人员动态结构设计   \\
+        郭璐          & 负责管理员动态结构设计     \\
+        徐翔          & 负责经理动态结构设计       \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\section{动态结构:入住客户}
+\subsection{RequestOn}
+\subsubsection{操作契约}
+
+\begin{enumerate}[leftmargin=3em, listparindent=4em, parsep=0pt]
+    \item 调度对象与房间建立关联；
+    \item 一个服务对象被创建（当前服务对象数小于服务对象数上限，验收环境的服务对象上限数=3）；
+    \item 调度对象与服务对象建立关联；
+    \item 服务对象与房间建立关联；
+    \item 调度对象的服务对象数及服务开始时间被赋值；
+    \item 服务对象的服务状态，服务开始时间，模式，目标温度，费率及费用值被赋值；
+\end{enumerate}
+
+\noindent 当 RequestNumber>ServiceNumber 时：
+
+\begin{enumerate}[leftmargin=3em, listparindent=4em, parsep=0pt]
+    \item 调度对象与房间建立关联；
+    \item 当前服务对象数大于等于服务对象数上限，则将房间的请求放到等待队列进行调度；
+    \item 队列中的等待服务的房间的等待时长被赋值（时间片时长）；
+    \item 调度对象保存
+\end{enumerate}
+
+\subsubsection{设计用例实现过程}
+
+\end{document}
