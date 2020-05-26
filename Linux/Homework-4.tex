@@ -64,26 +64,28 @@ int main(void) {
     pipe(fd);
 
     if(fork() == 0) {
+        close(0);
+        close(1);
+        close(fd[0]);
         int passwd_fd = open("/etc/passwd", O_RDONLY);
         dup2(passwd_fd, 0);
         dup2(fd[1], 1);
-        close(fd[0]);
-        close(fd[1]);
-        execlp("grep", "grep", "-v", "usr", NULL);
-    } else {
-        if(fork() == 0) {
-            int r_fd = open("r.txt", O_WRONLY | O_CREAT, 0777);
-            dup2(r_fd, 1);
-            dup2(fd[0], 0);
-            close(r_fd);
-            close(fd[0]);
-            close(fd[1]);
-            execlp("wc", "wc", "-l", NULL);
-        } else {
-            wait(NULL);
-            execlp("cat", "cat", "r.txt", NULL);
-        }
+        execlp ("grep", "grep", "-v", "usr", NULL);
     }
+    if(fork() == 0) {
+        close(0);
+        close(1);
+        close(fd[1]);
+        int r_fd = open("r.txt", O_WRONLY | O_CREAT, 0777);
+        dup2(r_fd, 1);
+        dup2(fd[0], 0);
+        execlp("wc", "wc", "-l", NULL);
+    }
+    close(fd[0]);
+    close(fd[1]);
+    wait(NULL);
+    wait(NULL);
+    execlp("cat", "cat", "r.txt", NULL);
 }
 \end{lstlisting}
 
