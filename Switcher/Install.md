@@ -1,6 +1,6 @@
 # Flexisip 安装
 
-本次我们选用的 SIP 服务端为 Flexsip，其提供了较为简单的搭建 SIP 服务器的方式，而且其配套客户端 UI 比较好看。
+本次我们选用的 SIP 服务端为 Flexisip，其提供了较为简单的搭建 SIP 服务器的方式，而且其配套客户端 UI 比较好看。
 
 ### Prerequisites
 
@@ -73,7 +73,6 @@ version:1
 
 test@sip.name1e5s.fun clrtxt:test ;
 test2@sip.name1e5s.fun clrtxt:test ;
-
 ```
 
 其中 `test` 为用户 ID， `clrtxt:` 后，空格前的为密码。
@@ -91,7 +90,3 @@ test2@sip.name1e5s.fun clrtxt:test ;
 ```
 
 ```
-
-
-
-
