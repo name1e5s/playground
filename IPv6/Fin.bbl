@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{goode2002voice}
+Bur Goode.
+\newblock Voice over internet protocol (voip).
+\newblock {\em Proceedings of the IEEE}, 90(9):1495--1517, 2002.
+
+\bibitem{pershan2005methods}
+Barry~Paul Pershan.
+\newblock Methods and apparatus for transferring from a pstn to a voip
+  telephone network, March~8 2005.
+\newblock US Patent 6,865,266.
+
+\bibitem{hersent_ip_2000}
+Olivier Hersent, David Gurle, and Jean-Pierre Petit.
+\newblock {\em {IP} telephony: packet-based multimedia communications systems}.
+\newblock Addison-Wesley, Harlow, 2000.
+\newblock OCLC: 833607085.
+
+\bibitem{rfc2543}
+Henning Schulzrinne, Eve Schooler, Jonathan Rosenberg, and Mark~J. Handley.
+\newblock {SIP: Session Initiation Protocol}.
+\newblock RFC 2543, March 1999.
+
+\bibitem{rfc1889}
+Ron Frederick, Stephen~L. Casner, Van Jacobson, and Henning Schulzrinne.
+\newblock {RTP: A Transport Protocol for Real-Time Applications}.
+\newblock RFC 1889, January 1996.
+
+\bibitem{rfc2326}
+Anup Rao, Rob Lanphier, and Henning Schulzrinne.
+\newblock {Real Time Streaming Protocol (RTSP)}.
+\newblock RFC 2326, April 1998.
+
+\bibitem{rfc2327}
+Mark~J. Handley and Van Jacobson.
+\newblock {SDP: Session Description Protocol}.
+\newblock RFC 2327, April 1998.
+
+\end{thebibliography}
