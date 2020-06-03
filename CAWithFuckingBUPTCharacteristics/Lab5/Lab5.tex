@@ -74,13 +74,13 @@
                     \item 自陷停顿：1
                     \item 发生冲突的指令组合：
                           \begin{itemize}[leftmargin=3em]
+                            \item ADDIU \$1, \$0, 56 和 LW \$r2,0(\$r1)
                             \item LW \$r2,0(\$r1) 和 ADD \$r4,\$r0,\$r2
                             \item ADD \$r4,\$r0,\$r2 和 SW \$r4,0(\$r1)
-                            \item SW \$r4,0(\$r1) 和 LW \$r6,4(\$r1)
-                            \item ADD \$r8,\$r6,\$r1 和 MUL \$r12,\$r10,\$r1
+                            \item LW \$r6,4(\$r1) 和 ADD \$r8,\$r6,\$r1
+                            \item MUL \$r12,\$r10,\$r1 和 ADD \$r16,\$r12,\$r1
                             \item ADD \$r16,\$r12,\$r1 和 ADD \$r18,\$r16,\$r1
                             \item ADD \$r18,\$r16,\$r1 和 SW \$r18,16(\$r1)
-                            \item SW \$r18,16(\$r1) 和 LW \$r20 8(\$r1)
                             \item MUL \$r22,\$r20,\$r14 和 MUL \$r24,\$r26,\$r14
                           \end{itemize}
                   \end{itemize}
