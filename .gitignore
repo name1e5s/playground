@@ -6,3 +6,7 @@
 *.synctex.gz
 *.toc
 *.zip
+.DS_Store
+*.fdb_latexmk
+*.fls
+*.synctex(busy)
